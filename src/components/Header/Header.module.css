@@ -1,0 +1,36 @@
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 0 40px;
+  background-color: #08d9d6;
+  margin-bottom: 0;
+  color: #252a34;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin-top: 15px;
+}
+
+li {
+  padding: 10px;
+}
+
+.a,
+a {
+  text-decoration: none;
+  color: #252a34;
+}
+
+.a:hover {
+  border-bottom: 2px solid #eaeaea;
+}

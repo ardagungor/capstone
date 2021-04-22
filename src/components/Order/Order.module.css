@@ -1,0 +1,27 @@
+.container {
+  padding-top: 50px;
+  background-color: gray;
+  display: grid;
+  /* text-align: center;
+  justify-content: center; */
+}
+
+.inputArea {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 100px;
+}
+
+.order_h3 {
+  color: #fff;
+}
+
+.order_h5 {
+  padding-top: 17px;
+  color: #fff;
+}
+
+.indicator {
+  padding-top: 17px;
+  color: #fff;
+}
