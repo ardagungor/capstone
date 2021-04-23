@@ -1,0 +1,23 @@
+.card {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.number {
+  position: relative;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.text {
+  color: #999;
+}
+
+.icon {
+  font-size: 2.5em;
+  color: #003147;
+}

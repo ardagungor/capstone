@@ -78,7 +78,6 @@ a:hover {
   background: #003147;
   transition: 0.5s;
   overflow: hidden;
-  border-right: 1px solid #fff;
 }
 
 .navigation ul {

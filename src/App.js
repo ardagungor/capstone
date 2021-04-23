@@ -10,6 +10,7 @@ import Percent from "./components/Percent/Percent";
 import Home from "./components/Home/Home";
 import Order from "./components/Order/Order";
 import Results from "./components/Results/Results";
+import Topbar from "./components/Topbar/Topbar";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -19,14 +20,14 @@ function App() {
         {/* <Header /> */}
         <Sidebar />
         <Switch>
-          <Route exact path="/" component={Hero} />
+          <Route exact path="/" component={Home} />
         </Switch>
-        <Switch>
+        {/* <Switch>
           <Route exact path="/" component={Boxes} />
         </Switch>
         <Switch>
           <Route exact path="/" component={Percent} />
-        </Switch>
+        </Switch> */}
 
         <Switch>
           <Route exact path="/login" component={Login} />

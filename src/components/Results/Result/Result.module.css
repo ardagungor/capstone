@@ -7,7 +7,7 @@
   border-radius: 10px;
   margin-bottom: 25px;
   padding-right: 25%;
-  width: 90%;
+  width: calc(100%-300px);
   background-color: #fff;
 }
 
