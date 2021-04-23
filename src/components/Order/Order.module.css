@@ -1,9 +1,9 @@
 .container {
   padding-top: 50px;
-  background-color: gray;
+  background-color: #003147;
   display: grid;
-  /* text-align: center;
-  justify-content: center; */
+  text-align: center;
+  justify-content: center;
 }
 
 .inputArea {

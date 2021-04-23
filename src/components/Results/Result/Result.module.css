@@ -8,6 +8,7 @@
   margin-bottom: 25px;
   padding-right: 25%;
   width: 90%;
+  background-color: #fff;
 }
 
 .logo {
@@ -21,6 +22,7 @@
   display: flex;
   flex-direction: column;
   padding-top: 15px;
+  color: #003147;
 }
 
 .upper {
@@ -28,12 +30,16 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 45px;
+  color: #003147;
+  margin-left: 15px;
 }
 
 .lower {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  color: #003147;
+  margin-left: 15px;
 }
 
 .img {
