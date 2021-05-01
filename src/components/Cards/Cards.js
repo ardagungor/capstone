@@ -5,10 +5,10 @@ import Card from "./Card/Card";
 const Cards = () => {
   return (
     <div className={classes.main}>
-      <Card number="0" text="Orders" />
-      <Card number="1235" text="Adjfaf" />
-      <Card number="751" text="Aajkshdasu" />
-      <Card number="751" text="Aajkshdasu" />
+      <Card number="713" text="Orders" />
+      <Card number="$29384" text="Spent" />
+      <Card number="23" text="Companies" />
+      <Card number="751" text="Something" />
     </div>
   );
 };

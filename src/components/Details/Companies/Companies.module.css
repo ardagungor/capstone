@@ -1,0 +1,13 @@
+.companies {
+  position: relative;
+  display: grid;
+  min-height: 530px;
+  background: #fff;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
