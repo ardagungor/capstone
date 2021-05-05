@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Cards.module.css";
+import axios from "axios";
 import Card from "./Card/Card";
 
 const Cards = () => {

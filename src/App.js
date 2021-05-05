@@ -11,6 +11,7 @@ import Home from "./components/Home/Home";
 import Order from "./components/Order/Order";
 import Results from "./components/Results/Results";
 import Topbar from "./components/Topbar/Topbar";
+import Profiles from "./components/Profiles/Profiles"
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
         </Switch>
         <Switch>
           <Route exact path="/home" component={Home} />
+        </Switch>
+        <Switch>
+          <Route exact path="/profiles" component={Profiles} />
         </Switch>
       </div>
     </BrowserRouter>
