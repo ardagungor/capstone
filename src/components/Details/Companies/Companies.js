@@ -36,6 +36,11 @@ const Companies = () => {
             <td>2004</td>
             <td>43</td>
           </tr>
+          <tr>
+            <td>Aasdasd Logistics</td>
+            <td>2021</td>
+            <td>0</td>
+          </tr>
         </tbody>
       </table>
     </div>

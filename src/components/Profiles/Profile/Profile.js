@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Profile.module.css";
-import ProfileCards from "../ProfileCards/ProfileCards"
+import Card from "../../Cards/Card/Card";
 
 const Profile = () => {
   return (
@@ -19,7 +19,12 @@ const Profile = () => {
         of Lorem Ipsum.{" "}
       </div>
       <div className={classes.area}>Operation Area</div>
-      <ProfileCards />
+      <div className={classes.cards}>
+        <Card number="5" text="Total Orders" icon="clipboard" />
+        <Card number="74%" text="Reliability Rate" icon="percent" />
+        <Card number="158" text="Total vehicle count" icon="vehicle"/>
+        <Card number="142" text="Green Vehicle Count" icon="green"/>
+      </div>
     </div>
   );
 };
