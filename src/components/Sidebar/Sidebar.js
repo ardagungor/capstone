@@ -83,6 +83,18 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink
+                to="/dashboard"
+                className={classes.sidebar_li}
+                activeClassName={classes.activeLink}
+              >
+                <span className={classes.icon}>
+                  <MdBorderColor />
+                </span>
+                <span className={classes.title}>Dashboard</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/order"
                 className={classes.sidebar_li}
                 activeClassName={classes.activeLink}
