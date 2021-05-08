@@ -11,3 +11,12 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.view_link {
+  position: relative;
+  padding: 5px 10px;
+  background: #003147;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}

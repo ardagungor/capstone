@@ -1,11 +1,15 @@
 import classes from "./Companies.module.css";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Companies = () => {
   return (
     <div className={classes.companies}>
       <div className={classes.header}>
         <h2>Companies</h2>
+        <NavLink to="/dashboard">
+          <span className={classes.view_link}>View All</span>
+        </NavLink>
       </div>
       <table>
         <thead>
