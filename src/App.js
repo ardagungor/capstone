@@ -13,6 +13,7 @@ import Results from "./components/Results/Results";
 import Topbar from "./components/Topbar/Topbar";
 import Profiles from "./components/Profiles/Profiles";
 import Dashboard from "./components/Dashboard/Dashboard";
+import OrderSummary from "./components/OrderSummary/OrderSummary";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
         </Switch>
         <Switch>
           <Route exact path="/dashboard" component={Dashboard} />
+        </Switch>
+        <Switch>
+          <Route exact path="/order-summary" component={OrderSummary} />
         </Switch>
       </div>
     </BrowserRouter>

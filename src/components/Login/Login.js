@@ -14,26 +14,40 @@ const Login = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            axios
-              .post("http://localhost:8080/auth/login", {
-                username: username,
-                password: password,
-              })
-              .then((res) => {
-                console.log(res);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            
+            // axios
+            //   .post("http://localhost:8080/auth/login", {
+            //     username: username,
+            //     password: password,
+            //   })
+            //   .then((res) => {
+            //     console.log(res);
+            //   })
+            //   .catch((err) => {
+            //     console.log(err);
+            //   });
 
-            
-              // axios.get("http://localhost:8080/providers").then((res) =>
-              //   console.log(res).catch((err) => {
-              //     console.log(err);
-              //   })
-              // );
-            
+            // axios({
+            //   method: "post",
+            //   url: "http://localhost:8080/auth/login",
+            //   data: {
+            //     username: username,
+            //     password: password,
+            //   },
+            //   headers: { "Access-Control-Allow-Origin": "*" },
+            // }).then(
+            //   (response) => {
+            //     console.log(response);
+            //   },
+            //   (error) => {
+            //     console.log(error);
+            //   }
+            // );
+
+            // axios.get("http://localhost:8080/providers").then((res) =>
+            //   console.log(res).catch((err) => {
+            //     console.log(err);
+            //   })
+            // );
           }}
         >
           <Form.Group controlId="formBasicUsername">
