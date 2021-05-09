@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 const Login = () => {
   const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(null);
 
   return (
     <div className={classes.container}>
@@ -14,17 +14,18 @@ const Login = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            // axios
-            //   .post("http://localhost:8080/auth/login", {
-            //     username: username,
-            //     password: password,
-            //   })
-            //   .then((res) => {
-            //     console.log(res);
-            //   })
-            //   .catch((err) => {
-            //     console.log(err);
-            //   });
+            axios
+              .post("http://localhost:8080/auth/login", {
+                username: username,
+                password: password,
+              })
+              .then((res) => {
+                console.log(res.data.token);
+                localStorage.setItem("token", res.data.token)
+              })
+              .catch((err) => {
+                console.log(err);
+              });
 
             // axios({
             //   method: "post",
@@ -33,7 +34,7 @@ const Login = () => {
             //     username: username,
             //     password: password,
             //   },
-            //   headers: { "Access-Control-Allow-Origin": "*" },
+            //   headers: { "Access-Control-Allow-Origin": "localhost:8080" },
             // }).then(
             //   (response) => {
             //     console.log(response);

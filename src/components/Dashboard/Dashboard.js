@@ -1,11 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Dashboard.module.css";
+import axios from "axios";
 
 const Dashboard = () => {
+  const options = {
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  };
+  useEffect(() => {
+    axios({
+      url: "http://localhost:8080/providers",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+       //console.log(res.data.content);
+        res.data.content.forEach(element => {
+          console.log(element.providerName)
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // axios
+    //   .get("localhost:8080/providers", options)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  });
+
   return (
     <div className={classes.recentOrders}>
       <div className={classes.header}>
-        <h2>Dashboard</h2>
+        <h2
+          onClick={() => {
+            axios({
+              url: "http://localhost:8080/providers",
+              method: "get",
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            })
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+        >
+          Dashboard
+        </h2>
       </div>
       <table>
         <thead>
