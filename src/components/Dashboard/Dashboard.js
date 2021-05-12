@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Dashboard.module.css";
+import Button from "../Reusable/Button/Button";
 import axios from "axios";
 
 const Dashboard = () => {
   const [providers, setProviders] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const loadData = () => {
     axios({
@@ -15,8 +17,7 @@ const Dashboard = () => {
     })
       .then((res) => {
         setProviders(res.data.content);
-        console.log(res.data.content);
-        console.log(providers);
+        setLoading(true);
       })
       .catch((err) => {
         console.log(err);
@@ -24,11 +25,13 @@ const Dashboard = () => {
   };
   useEffect(() => {
     loadData();
+
+    console.log(providers);
   }, []);
   return (
     <div className={classes.recentOrders}>
       <div className={classes.header}>
-        <h2>Dashboard</h2>
+        <h2>Dashboard </h2>
       </div>
       <table>
         <thead>
@@ -43,12 +46,22 @@ const Dashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {providers.map((prov) => {
-            <tr>
-              <td>{prov.providerName}</td>;
-            </tr>;
+          {providers.map((provider) => {
+            return loading ? (
+              <tr>
+                <td>{provider.providerName}</td>
+                <td>{provider.providerDesc}</td>
+                <td>{provider.foundationYear}</td>
+                <td>{provider.numberOfOrders}</td>
+                <td>{provider.operationArea}</td>
+                <td>{provider.products}</td>
+                <td>{provider.certificates}</td>
+              </tr>
+            ) : (
+              <h2>Loading</h2>
+            );
           })}
-          <tr>
+          {/* <tr>
             <td>X Logistics</td>
             <td>
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -99,7 +112,7 @@ const Dashboard = () => {
             <td>Istanbul</td>
             <td>Apple, melon, eggs, tomato, apple, melon, eggs, tomato </td>
             <td>Cert 1, Cert 2, Cert 3, Cert 4</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>
