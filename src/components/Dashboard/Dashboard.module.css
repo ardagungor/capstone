@@ -1,50 +1,60 @@
 .recentOrders {
-    position: relative;
-    display: grid;
-    min-height: 530px;
-    background: #fff;
-    padding: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  
-  .header h2 {
-    font-weight: bold;
-  }
-  
-  .view_link {
-    position: relative;
-    padding: 5px 10px;
-    background: #003147;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  table thead td {
-    font-weight: bold;
-  }
-  
-  table tr {
-    border-bottom: 1px solid gray;
-  }
-  
-  table tbody tr:hover {
-    background: #003147;
-    color: #fff;
-  }
-  
-  table tr td {
-    padding: 9px 5px;
-  }
-  
+  position: relative;
+  display: grid;
+  min-height: 530px;
+  background: #fff;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header h2 {
+  font-weight: bold;
+}
+
+.paginator {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5px;
+}
+
+.paginator:hover {
+  background-color: gray;
+}
+
+.view_link {
+  position: relative;
+  padding: 5px 10px;
+  background: #003147;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead td {
+  font-weight: bold;
+}
+
+table tr {
+  border-bottom: 1px solid gray;
+}
+
+table tbody tr:hover {
+  background: #003147;
+  color: #fff;
+}
+
+table tr td {
+  padding: 9px 5px;
+}

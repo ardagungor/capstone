@@ -138,6 +138,18 @@ const Sidebar = () => {
                 <span className={classes.title}>Results</span>
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/login"
+                className={classes.sidebar_li}
+                activeClassName={classes.activeLink}
+              >
+                <span className={classes.icon}>
+                  <MdBorderColor />
+                </span>
+                <span className={classes.title}>Login</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Dashboard.module.css";
-import Button from "../Reusable/Button/Button";
 import axios from "axios";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const Dashboard = () => {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);
+  let [page, setPage] = useState(0);
 
   const loadData = () => {
     axios({
-      url: "http://localhost:8080/providers",
+      url: "http://localhost:8080/providers?page=" + page,
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -27,11 +28,28 @@ const Dashboard = () => {
     loadData();
 
     console.log(providers);
-  }, []);
+  }, [page]);
   return (
     <div className={classes.recentOrders}>
       <div className={classes.header}>
-        <h2>Dashboard </h2>
+        <h2>Dashboard</h2>
+        <div className={classes.pages}>
+          <GrFormPrevious
+            onClick={() => {
+              if (page != 0) setPage(page - 1);
+            }}
+            className={classes.paginator}
+          />
+          <GrFormNext
+            onClick={() => {
+              if (page != 3) {
+                setPage(page + 1);
+              }
+            }}
+            className={classes.paginator}
+          />
+          <h4>{page + 1}/4</h4>
+        </div>
       </div>
       <table>
         <thead>
