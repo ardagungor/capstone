@@ -26,8 +26,6 @@ const Dashboard = () => {
   };
   useEffect(() => {
     loadData();
-
-    console.log(providers);
   }, [page]);
   return (
     <div className={classes.recentOrders}>
@@ -79,58 +77,6 @@ const Dashboard = () => {
               <h2>Loading</h2>
             );
           })}
-          {/* <tr>
-            <td>X Logistics</td>
-            <td>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
-            </td>
-            <td>1975</td>
-            <td>453</td>
-            <td>Istanbul</td>
-            <td>Apple, melon, eggs, tomato, apple, melon, eggs, tomato </td>
-            <td>Cert 1, Cert 2, Cert 3, Cert 4</td>
-          </tr>
-          <tr>
-            <td>X Logistics</td>
-            <td>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
-            </td>
-            <td>1975</td>
-            <td>453</td>
-            <td>Istanbul</td>
-            <td>Apple, melon, eggs, tomato, apple, melon, eggs, tomato </td>
-            <td>Cert 1, Cert 2, Cert 3, Cert 4</td>
-          </tr>
-          <tr>
-            <td>X Logistics</td>
-            <td>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
-            </td>
-            <td>1975</td>
-            <td>453</td>
-            <td>Istanbul</td>
-            <td>Apple, melon, eggs, tomato, apple, melon, eggs, tomato </td>
-            <td>Cert 1, Cert 2, Cert 3, Cert 4</td>
-          </tr>
-          <tr>
-            <td>X Logistics</td>
-            <td>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the
-            </td>
-            <td>1975</td>
-            <td>453</td>
-            <td>Istanbul</td>
-            <td>Apple, melon, eggs, tomato, apple, melon, eggs, tomato </td>
-            <td>Cert 1, Cert 2, Cert 3, Cert 4</td>
-          </tr> */}
         </tbody>
       </table>
     </div>

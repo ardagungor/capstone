@@ -9,7 +9,7 @@ const CompanyInfo = (props) => {
         <div className={classes.logo}>
           <img
             className={classes.img}
-            src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg"
+            src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg" alt="logo"
           />
           <Button text="Select" />
         </div>

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import classes from "./Login.module.css";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const Login = () => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
+  const [redirect, setRedirect] = useState(false);
 
   return (
     <div className={classes.container}>
@@ -20,11 +21,17 @@ const Login = () => {
                 password: password,
               })
               .then((res) => {
-                console.log(res.data.token);
-                localStorage.setItem("token", res.data.token)
+                if (res.status == "200") {
+                  console.log("asd");
+                  localStorage.setItem("token", res.data.token);
+                  localStorage.setItem("logged", true);
+
+                  setRedirect(true);
+                }
               })
               .catch((err) => {
                 console.log(err);
+                alert("Login failed. Please check your username and password");
               });
 
             // axios({
@@ -77,6 +84,7 @@ const Login = () => {
             Submit
           </Button>
         </Form>
+        {redirect ? <Redirect to="/" /> : null}
       </div>
     </div>
   );

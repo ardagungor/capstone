@@ -14,9 +14,14 @@ import Topbar from "./components/Topbar/Topbar";
 import Profiles from "./components/Profiles/Profiles";
 import Dashboard from "./components/Dashboard/Dashboard";
 import OrderSummary from "./components/OrderSummary/OrderSummary";
+import PrivateRoute from "./PrivateRoute";
+import DecisionRoute from "./DecisionRoute";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
+  let decisionFunction = () => {
+    return localStorage.getItem("logged");
+  };
   return (
     <BrowserRouter>
       <div className="App">
@@ -44,12 +49,16 @@ function App() {
         <Switch>
           <Route exact path="/home" component={Home} />
         </Switch>
+        
         <Switch>
           <Route exact path="/profiles" component={Profiles} />
         </Switch>
         <Switch>
-          <Route exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
         </Switch>
+        {/* <Switch>
+          <Route exact path="/dashboard" component={Dashboard} />
+        </Switch> */}
         <Switch>
           <Route exact path="/order-summary" component={OrderSummary} />
         </Switch>

@@ -1,73 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Sidebar.module.css";
 import { NavLink } from "react-router-dom";
 import { MdBorderColor } from "react-icons/md";
-import { GrDocumentPerformance } from "react-icons/gr";
 
 const Sidebar = () => {
+  const [logged, setLogged] = useState(false);
+
+  useEffect(() => {});
+
   return (
     <div>
-      {/* <div className={classes.container}>
-        <NavLink to="/">
-          <h1 className={classes.sidebar_h1}>Capstone 1220</h1>
-        </NavLink>
-        <ul className={classes.sidebar_ul}>
-          <li className={classes.sidebar_li}>
-            <NavLink
-              to="/order"
-              className={classes.sidebar_li}
-              activeClassName={classes.activeLink}
-            >
-              <MdBorderColor
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  paddingLeft: "5px",
-                }}
-              />
-              <span className={classes.sidebar_a}>Order</span>
-            </NavLink>
-          </li>
-          <li className={classes.sidebar_li}>
-            <NavLink
-              to="/home"
-              className={classes.sidebar_li}
-              activeClassName={classes.activeLink}
-            >
-              <GrDocumentPerformance
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  paddingLeft: "5px",
-                }}
-              />
-              <span className={classes.sidebar_a}>Order Summary</span>
-            </NavLink>
-          </li>
-          <li className={classes.sidebar_li}>
-            <NavLink
-              to="/results"
-              className={classes.sidebar_li}
-              activeClassName={classes.activeLink}
-            >
-              <GrDocumentPerformance
-                style={{
-                  width: "30px",
-                  height: "30px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  paddingLeft: "5px",
-                }}
-              />
-              <span className={classes.sidebar_a}>Results</span>
-            </NavLink>
-          </li>
-        </ul>
-      </div> */}
       <div className={classes.container}>
         <div className={classes.navigation}>
           <ul>
@@ -101,15 +43,7 @@ const Sidebar = () => {
               >
                 <span className={classes.icon}>
                   {" "}
-                  <MdBorderColor
-                  // style={{
-                  //   width: "30px",
-                  //   height: "30px",
-                  //   marginLeft: "auto",
-                  //   marginRight: "auto",
-                  //   paddingLeft: "5px",
-                  // }}
-                  />
+                  <MdBorderColor />
                 </span>
                 <span className={classes.title}>Order</span>
               </NavLink>
@@ -138,6 +72,24 @@ const Sidebar = () => {
                 <span className={classes.title}>Results</span>
               </NavLink>
             </li>
+
+            <li>
+              <NavLink
+                to="/login"
+                className={classes.sidebar_li}
+                activeClassName={classes.activeLink}
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.setItem("logged", false);
+                }}
+              >
+                <span className={classes.icon}>
+                  <MdBorderColor />
+                </span>
+                <span className={classes.title}>Logout</span>
+              </NavLink>
+            </li>
+
             <li>
               <NavLink
                 to="/login"
