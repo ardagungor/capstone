@@ -22,10 +22,8 @@ const Login = () => {
               })
               .then((res) => {
                 if (res.status == "200") {
-                  console.log("asd");
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("logged", true);
-
                   setRedirect(true);
                 }
               })
@@ -33,29 +31,6 @@ const Login = () => {
                 console.log(err);
                 alert("Login failed. Please check your username and password");
               });
-
-            // axios({
-            //   method: "post",
-            //   url: "http://localhost:8080/auth/login",
-            //   data: {
-            //     username: username,
-            //     password: password,
-            //   },
-            //   headers: { "Access-Control-Allow-Origin": "localhost:8080" },
-            // }).then(
-            //   (response) => {
-            //     console.log(response);
-            //   },
-            //   (error) => {
-            //     console.log(error);
-            //   }
-            // );
-
-            // axios.get("http://localhost:8080/providers").then((res) =>
-            //   console.log(res).catch((err) => {
-            //     console.log(err);
-            //   })
-            // );
           }}
         >
           <Form.Group controlId="formBasicUsername">

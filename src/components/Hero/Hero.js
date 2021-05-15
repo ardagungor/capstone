@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./Hero.module.css";
-import Button from "../Button/Button";
 const Hero = () => {
   return (
     <div className={classes.container}>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import classes from "./Dashboard.module.css";
 import axios from "axios";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -7,7 +6,8 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 const Dashboard = (props) => {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);
-  let [page, setPage] = useState(0);
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState();
 
   const loadData = () => {
     axios({
@@ -20,6 +20,7 @@ const Dashboard = (props) => {
       .then((res) => {
         setProviders(res.data.content);
         setLoading(true);
+        setTotalPage(res.data.totalPages);
       })
       .catch((err) => {
         console.log(err);
@@ -35,19 +36,21 @@ const Dashboard = (props) => {
         <div className={classes.pages}>
           <GrFormPrevious
             onClick={() => {
-              if (page != 0) setPage(page - 1);
+              if (page !== 0) setPage(page - 1);
             }}
             className={classes.paginator}
           />
           <GrFormNext
             onClick={() => {
-              if (page != 3) {
+              if (page !== totalPage - 1) {
                 setPage(page + 1);
               }
             }}
             className={classes.paginator}
           />
-          <h4>{page + 1}/4</h4>
+          <h4>
+            {page + 1}/{totalPage}
+          </h4>
         </div>
       </div>
       <table>
@@ -68,7 +71,7 @@ const Dashboard = (props) => {
               <tr
                 key={provider.providerId}
                 onClick={() => {
-                  props.history.push("/profiles/" + provider.providerId)
+                  props.history.push("/profiles/" + provider.providerId);
                 }}
               >
                 <td>{provider.providerName}</td>
@@ -80,7 +83,7 @@ const Dashboard = (props) => {
                 <td>{provider.certificates}</td>
               </tr>
             ) : (
-              <h2>Loading</h2>
+              "Loading"
             );
           })}
         </tbody>

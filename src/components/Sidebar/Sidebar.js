@@ -6,7 +6,10 @@ import { MdBorderColor } from "react-icons/md";
 const Sidebar = () => {
   const [logged, setLogged] = useState(false);
 
-  useEffect(() => {});
+  useEffect(() => {
+    setLogged(localStorage.getItem("logged"));
+    console.log(logged);
+  }, [localStorage.getItem("logged")]);
 
   return (
     <div>
@@ -89,7 +92,6 @@ const Sidebar = () => {
                 <span className={classes.title}>Logout</span>
               </NavLink>
             </li>
-
             <li>
               <NavLink
                 to="/login"

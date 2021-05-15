@@ -26,6 +26,8 @@ const Card = (props) => {
     case "company":
       icon = <GiFactory />;
       break;
+    default:
+      break;
   }
   return (
     <div className={classes.card}>
