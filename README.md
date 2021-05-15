@@ -1,6 +1,6 @@
 # Sıradaki yapılacaklar
 
-- Dashboard üzerinden provider'a tıklanınca profil sayfasına götürecek (provider id'yi kullanarak yapılabilir)
+- ~~Dashboard üzerinden provider'a tıklanınca profil sayfasına götürecek (provider id'yi kullanarak yapılabilir)~~
 - Order girme sayfası düzenlenecek (API'a göre)
 - Kullanıcı giriş yapmamışsa sadece Login kısmı görünecek, login yapınca dashboard order vs gibi kısımlar gelecek (protected route muhabbeti)
 - JWT gibi user da bir yerde tutulmalı, o araştırılıp implement edilecek

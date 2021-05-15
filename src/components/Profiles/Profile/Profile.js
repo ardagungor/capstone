@@ -1,29 +1,76 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Profile.module.css";
 import Card from "../../Cards/Card/Card";
+import axios from "axios";
 
-const Profile = () => {
+const Profile = (props) => {
+  const [provider, setProvider] = useState({});
+
+  const loadData = () => {
+    let str = window.location.pathname;
+    str = str.substring(str.lastIndexOf("/") + 1);
+
+    axios({
+      url: "http://localhost:8080/providers/" + str,
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        setProvider(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <div className={classes.profile}>
-      <div className={classes.name}>Company Name</div>
-      <div className={classes.year}>Year</div>
-      <div className={classes.desc}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.{" "}
+      <div className={classes.name}>
+        {provider.data ? provider.data.providerName : "Name"}
       </div>
-      <div className={classes.area}>Operation Area</div>
+      <div className={classes.year}>
+        {provider.data ? provider.data.foundationYear : "Year"}
+      </div>
+      <div className={classes.desc}>
+        {provider.data ? provider.data.providerDesc : "Description"}
+      </div>
+      <div className={classes.area}>
+        {provider.data ? provider.data.operationArea : "Operation Area"}
+      </div>
       <div className={classes.cards}>
-        <Card number="5" text="Total Orders" icon="clipboard" />
-        <Card number="74%" text="Reliability Rate" icon="percent" />
-        <Card number="158" text="Total vehicle count" icon="vehicle"/>
-        <Card number="142" text="Green Vehicle Count" icon="green"/>
+        <Card
+          number={provider.data ? provider.data.numberOfOrders : "0"}
+          text="Total Orders"
+          icon="clipboard"
+        />
+        <Card
+          number={
+            provider.data
+              ? provider.data.reliabilityPercentage == null
+                ? "47%"
+                : provider.data.reliabilityPercentage
+              : "47%"
+          }
+          text="Reliability Rate"
+          icon="percent"
+        />
+        <Card
+          number={provider.data ? provider.data.totalVehicleCount : "0"}
+          text="Total vehicle count"
+          icon="vehicle"
+        />
+        <Card
+          number={provider.data ? provider.data.greenPercentage : "0"}
+          text="Green Vehicle Count"
+          icon="green"
+        />
       </div>
     </div>
   );

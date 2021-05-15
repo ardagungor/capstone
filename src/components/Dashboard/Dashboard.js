@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
 import classes from "./Dashboard.module.css";
 import axios from "axios";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(false);
   let [page, setPage] = useState(0);
@@ -64,7 +65,12 @@ const Dashboard = () => {
         <tbody>
           {providers.map((provider) => {
             return loading ? (
-              <tr>
+              <tr
+                key={provider.providerId}
+                onClick={() => {
+                  props.history.push("/profiles/" + provider.providerId)
+                }}
+              >
                 <td>{provider.providerName}</td>
                 <td>{provider.providerDesc}</td>
                 <td>{provider.foundationYear}</td>
