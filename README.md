@@ -10,3 +10,5 @@
 - ~~Login ana sayfaya redirect edecek~~
 - Kayıt olma sayfası ???
 - ~~Logout butonu~~
+- Adminler için panel gibi bi yerden üyelik oluşturma şeyi (signup yok zaten, rol id pw seçme falan)
+- Provider firmaya sipariş girme olayı
