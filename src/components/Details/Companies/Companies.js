@@ -1,12 +1,36 @@
 import classes from "./Companies.module.css";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-const Companies = () => {
+const Companies = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [providers, setProviders] = useState([]);
+
+  const loadData = () => {
+    axios({
+      url: "http://localhost:8080/providers",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setProviders(res.data.content);
+        setLoading(true);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
   return (
     <div className={classes.companies}>
       <div className={classes.header}>
-        <h2>Companies</h2>
+        <h2>Recent Companies</h2>
         <NavLink to="/dashboard">
           <span className={classes.view_link}>View All</span>
         </NavLink>
@@ -16,35 +40,21 @@ const Companies = () => {
           <tr>
             <td>Company</td>
             <td>Foundation Year</td>
-            <td>Number of Orders</td>
+            <td>Operation Area</td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>X Logistics</td>
-            <td>2004</td>
-            <td>43</td>
-          </tr>
-          <tr>
-            <td>LeBron Logistics</td>
-            <td>2005</td>
-            <td>87</td>
-          </tr>
-          <tr>
-            <td>Messi Limited</td>
-            <td>2014</td>
-            <td>23</td>
-          </tr>
-          <tr>
-            <td>X Logistics</td>
-            <td>2004</td>
-            <td>43</td>
-          </tr>
-          <tr>
-            <td>Aasdasd Logistics</td>
-            <td>2021</td>
-            <td>0</td>
-          </tr>
+          {providers.map((provider) => {
+            return loading ? (
+              <tr key={provider.providerId}>
+                <td>{provider.providerName}</td>
+                <td>{provider.foundationYear}</td>
+                <td>{provider.operationArea}</td>
+              </tr>
+            ) : (
+              "Loading"
+            );
+          })}
         </tbody>
       </table>
     </div>

@@ -53,6 +53,7 @@ table tr {
 table tbody tr:hover {
   background: #003147;
   color: #fff;
+  cursor: pointer;
 }
 
 table tr td {

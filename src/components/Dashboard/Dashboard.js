@@ -23,7 +23,7 @@ const Dashboard = (props) => {
         setTotalPage(res.data.totalPages);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
       });
   };
   useEffect(() => {
