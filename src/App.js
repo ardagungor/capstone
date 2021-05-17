@@ -8,6 +8,8 @@ import Results from "./components/Results/Results";
 import Profiles from "./components/Profiles/Profiles";
 import Dashboard from "./components/Dashboard/Dashboard";
 import OrderSummary from "./components/OrderSummary/OrderSummary";
+import Products from "./components/Products/Products";
+import AdminPanel from "./components/AdminPanel/AdminPanel"
 import PrivateRoute from "./PrivateRoute";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -33,6 +35,12 @@ function App() {
         </Switch>
         <Switch>
           <PrivateRoute exact path="/home" component={Home} />
+        </Switch>
+        <Switch>
+          <PrivateRoute exact path="/products" component={Products} />
+        </Switch>
+        <Switch>
+          <PrivateRoute exact path="/admin-panel" component={AdminPanel} />
         </Switch>
         <Switch>
           <PrivateRoute

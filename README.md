@@ -8,7 +8,8 @@
 - ~~Toplam sayfa sayısı için geçici çözüm bulundu şimdilik kalıcı çözüme kafam yetmedi. Kalıcı çözüm bulunacak~~
 - ~~Ana sayfadaki companies kısmı da güncellenecek~~
 - ~~Login ana sayfaya redirect edecek~~
-- Kayıt olma sayfası ???
 - ~~Logout butonu~~
-- Adminler için panel gibi bi yerden üyelik oluşturma şeyi (signup yok zaten, rol id pw seçme falan)
+- ~~Adminler için panel gibi bi yerden üyelik oluşturma şeyi (signup yok zaten, rol id pw seçme falan)~~ product ekleme de yapılacak
+- Roller arası görevleri ayarlamak için res.data.roles array'i kontrol edilecek
 - Provider firmaya sipariş girme olayı
+- ~~Bütün product'ları gösteren sayfa~~

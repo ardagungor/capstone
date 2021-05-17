@@ -40,6 +40,18 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink
+                to="/admin-panel"
+                className={classes.sidebar_li}
+                activeClassName={classes.activeLink}
+              >
+                <span className={classes.icon}>
+                  <MdBorderColor />
+                </span>
+                <span className={classes.title}>Admin Panel</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/order"
                 className={classes.sidebar_li}
                 activeClassName={classes.activeLink}
@@ -73,6 +85,18 @@ const Sidebar = () => {
                   <MdBorderColor />
                 </span>
                 <span className={classes.title}>Results</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/products"
+                className={classes.sidebar_li}
+                activeClassName={classes.activeLink}
+              >
+                <span className={classes.icon}>
+                  <MdBorderColor />
+                </span>
+                <span className={classes.title}>Products</span>
               </NavLink>
             </li>
 
