@@ -71,7 +71,7 @@ const AddUser = () => {
           </Form.Group>
 
           <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label>Select role</Form.Label>
+            <Form.Label>Select Role</Form.Label>
             <Form.Control
               as="select"
               custom
@@ -86,7 +86,7 @@ const AddUser = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Submit
+            Add User
           </Button>
         </Form>
       </div>

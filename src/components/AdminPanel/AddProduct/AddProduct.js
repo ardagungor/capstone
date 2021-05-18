@@ -6,9 +6,9 @@ import axios from "axios";
 const AddProduct = () => {
   const [productName, setProductName] = useState(null);
   const [temp, setTemp] = useState(null);
-  const [tempUnit, setTempUnit] = useState(null);
+  const [tempUnit, setTempUnit] = useState("C");
   const [humidity, setHumidity] = useState(null);
-  const [humidityUnit, setHumidityUnit] = useState(null);
+  const [humidityUnit, setHumidityUnit] = useState("%");
 
   return (
     <div className={classes.container}>
@@ -16,26 +16,34 @@ const AddProduct = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            axios
-              .post("http://localhost:8080/auth/signup", {
+            axios({
+              url: "http://localhost:8080/products/add",
+              method: "post",
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+              data: {
                 productName: productName,
-                temp: temp,
+                idealTemp: parseFloat(temp),
                 tempUnit: tempUnit,
-                humidity: humidity,
-                humidityUnit: setHumidityUnit,
-              })
+                idealHumidity: parseFloat(humidity),
+                humidityUnit: humidityUnit,
+              },
+            })
               .then((res) => {
-                if (res.status == "200") {
-                  console.log(res);
-                  alert("Product " + productName + " is created.");
-                }
+                console.log(res);
+                alert("Product " + productName + " is created.");
               })
               .catch((err) => {
                 console.log(err);
-                alert(
-                  "User creation failed. Please check the username and password"
-                );
               });
+            console.log(
+              typeof productName,
+              typeof parseFloat(temp),
+              typeof tempUnit,
+              typeof humidityUnit,
+              typeof parseFloat(humidity)
+            );
           }}
         >
           <Form.Group controlId="formBasicUsername">
@@ -53,6 +61,7 @@ const AddProduct = () => {
             <Form.Label>Ideal Temperature</Form.Label>
             <Form.Control
               type="number"
+              step="any"
               placeholder="Enter ideal temperature"
               onChange={(e) => {
                 setTemp(e.target.value);
@@ -61,22 +70,34 @@ const AddProduct = () => {
           </Form.Group>
 
           {/* <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label>Select role</Form.Label>
+            <Form.Label>Temperature Unit</Form.Label>
             <Form.Control
               as="select"
               custom
-              onClick={(e) => {
-                setRole(e.target.value);
+              onChange={(e) => {
+                setTempUnit(e.target.value);
               }}
             >
-              <option>Admin</option>
-              <option>Personnel</option>
-              <option>User</option>
+              <option>C</option>
+              <option selected="selected">K</option>
+              <option>F</option>
             </Form.Control>
           </Form.Group> */}
 
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Ideal Humidity %</Form.Label>
+            <Form.Control
+              type="number"
+              step="any"
+              placeholder="Enter ideal humidity percentage"
+              onChange={(e) => {
+                setHumidity(e.target.value);
+              }}
+            />
+          </Form.Group>
+
           <Button variant="primary" type="submit">
-            Submit
+            Add Product
           </Button>
         </Form>
       </div>
