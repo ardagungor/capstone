@@ -1,7 +1,6 @@
 import classes from "./Products.module.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const Products = (props) => {
@@ -26,13 +25,14 @@ const Products = (props) => {
         console.log(err.response.data);
       });
   };
+
   useEffect(() => {
     loadData();
   }, [page]);
   return (
     <div className={classes.products}>
       <div className={classes.header}>
-        <h2>Recent Companies</h2>
+        <h2>Products</h2>
         <div className={classes.pages}>
           <GrFormPrevious
             onClick={() => {
