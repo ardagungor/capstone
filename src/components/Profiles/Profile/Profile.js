@@ -18,9 +18,9 @@ const Profile = (props) => {
       },
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setProvider(res);
-       // console.log(res.data)
+        // console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -66,7 +66,6 @@ const Profile = (props) => {
           number={provider.data ? provider.data.totalVehicleCount : "0"}
           text="Total vehicle count"
           icon="vehicle"
-          
         />
         <Card
           number={provider.data ? provider.data.greenPercentage : "0"}

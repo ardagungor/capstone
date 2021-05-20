@@ -5,14 +5,15 @@ import axios from "axios";
 
 const Order = () => {
   const [arrivalDate, setArrivalDate] = useState(null);
-  const [orderDate, setOrderDate] = useState(null); //otomatik olarak değeri alıcaz
+  const [orderDate, setOrderDate] = useState(null);
   const [amount, setAmount] = useState(0);
   const [unit, setUnit] = useState("");
-  const [provider, setProvider] = useState(null); //dropdown menüden liste
+  const [provider, setProvider] = useState(null);
   const [deliveryLocation, setDeliveryLocation] = useState("");
   const [orderState, setOrderState] = useState("PLACED");
   const [providers, setProviders] = useState([]);
   const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const loadData = () => {
     axios({
@@ -23,14 +24,13 @@ const Order = () => {
       },
     })
       .then((res) => {
-        setPage(res.data.totalPages);
         setProviders(res.data.content);
+        setLoading(true);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
-
   useEffect(() => {
     loadData();
   }, []);
@@ -41,6 +41,18 @@ const Order = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+              dd = "0" + dd;
+            }
+            if (mm < 10) {
+              mm = "0" + mm;
+            }
+            today = yyyy + "-" + mm + "-" + dd;
+            setOrderDate(today);
             axios({
               url: "http://localhost:8080/orders/add",
               method: "post",
@@ -54,6 +66,7 @@ const Order = () => {
                 unit: unit,
                 deliveryLocation: deliveryLocation,
                 state: orderState,
+                providerId: provider.replace(/[^0-9]/g, ""),
               },
             })
               .then((res) => {
@@ -68,14 +81,16 @@ const Order = () => {
               orderDate,
               parseFloat(amount),
               unit,
-              deliveryLocation
+              deliveryLocation,
+              provider.replace(/[^0-9]/g, "")
             );
             console.log(
               typeof arrivalDate,
               typeof orderDate,
               typeof parseFloat(amount),
               typeof unit,
-              typeof deliveryLocation
+              typeof deliveryLocation,
+              typeof parseInt(provider.charAt(0))
             );
           }}
         >
@@ -138,17 +153,15 @@ const Order = () => {
                 setProvider(e.target.value);
               }}
             >
-              {
-                (setTimeout(() => {
-                  providers.map((prov) => {
-                    <option>{prov.providerDesc}</option>;
-                  });
-                }),
-                1500)
-              }
-              {/* <option>Admin</option>
-              <option>Personnel</option>
-              <option>User</option> */}
+              {providers.map((provider) => {
+                return loading ? (
+                  <option>
+                    {provider.providerId} - {provider.providerName}
+                  </option>
+                ) : (
+                  "Loading"
+                );
+              })}
             </Form.Control>
           </Form.Group>
 
