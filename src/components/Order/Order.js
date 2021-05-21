@@ -14,6 +14,7 @@ const Order = () => {
   const [providers, setProviders] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [currency, setCurrency] = useState("TL");
 
   const loadData = () => {
     axios({
@@ -62,36 +63,39 @@ const Order = () => {
               data: {
                 arrivalDate: arrivalDate,
                 orderDate: orderDate,
-                amount: parseFloat(amount),
+                amount: amount,
                 unit: unit,
                 deliveryLocation: deliveryLocation,
                 state: orderState,
                 providerId: provider.replace(/[^0-9]/g, ""),
+                currency: currency,
               },
             })
               .then((res) => {
-                console.log(res);
+                if (res.status === 200) {
+                  alert("Order added.");
+                }
               })
               .catch((err) => {
                 console.log(err);
               });
 
-            console.log(
-              arrivalDate,
-              orderDate,
-              parseFloat(amount),
-              unit,
-              deliveryLocation,
-              provider.replace(/[^0-9]/g, "")
-            );
-            console.log(
-              typeof arrivalDate,
-              typeof orderDate,
-              typeof parseFloat(amount),
-              typeof unit,
-              typeof deliveryLocation,
-              typeof parseInt(provider.charAt(0))
-            );
+            // console.log(
+            //   arrivalDate,
+            //   orderDate,
+            //   parseFloat(amount),
+            //   unit,
+            //   deliveryLocation,
+            //   provider.replace(/[^0-9]/g, "")
+            // );
+            // console.log(
+            //   typeof arrivalDate,
+            //   typeof orderDate,
+            //   typeof parseFloat(amount),
+            //   typeof unit,
+            //   typeof deliveryLocation,
+            //   typeof parseInt(provider.charAt(0))
+            // );
           }}
         >
           <Form.Group controlId="formBasicUsername">

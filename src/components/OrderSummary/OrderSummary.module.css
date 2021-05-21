@@ -38,3 +38,15 @@ table tbody tr:hover {
 table tr td {
   padding: 9px 5px;
 }
+
+.btnConfirm {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-color: green;
+}
+
+.state {
+  background-color: gray;
+  border-radius: 10px;
+}
