@@ -56,7 +56,9 @@ const OrderSummary = () => {
         <thead>
           <tr>
             <td>Order ID</td>
-            <td>Provider (request gelecek)</td>
+            <td>Provider ID</td>
+            <td>Order Date</td>
+            <td>Arrival Date</td>
             <td>Amount Delivered</td>
             <td>Amount Lost</td>
             <td>Paid Amount</td>
@@ -70,9 +72,20 @@ const OrderSummary = () => {
               <tr key={order.orderId}>
                 <td>{order.orderId}</td>
                 <td>{order.providerId}</td>
-                <td>{order.amountDelivered}</td>
-                <td>{order.amountLost}</td>
-                <td>{order.paidAmount}</td>
+                <td>{order.orderDate ? order.orderDate.toString() : "null"}</td>
+                <td>{order.arrivalDate ? order.arrivalDate : "null"}</td>
+                <td>
+                  {order.amountDelivered} {order.unit.toLowerCase()}
+                </td>
+                <td>
+                  {order.amountLost} {order.unit.toLowerCase()}
+                </td>
+                <td>
+                  {order.paidAmount}{" "}
+                  {order.currency != null
+                    ? order.currency.toUpperCase()
+                    : order.currency}
+                </td>
                 <td>
                   <div className={classes.state}>{order.state}</div>
                 </td>

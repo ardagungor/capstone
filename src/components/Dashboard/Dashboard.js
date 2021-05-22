@@ -57,6 +57,8 @@ const Dashboard = (props) => {
         <thead>
           <tr>
             <td>Provider Name</td>
+            <td>Provider ID</td>
+
             <td>Description</td>
             <td>Foundation Year</td>
             <td># of Orders</td>
@@ -75,6 +77,8 @@ const Dashboard = (props) => {
                 }}
               >
                 <td>{provider.providerName}</td>
+                <td>{provider.providerId}</td>
+
                 <td>{provider.providerDesc}</td>
                 <td>{provider.foundationYear}</td>
                 <td>{provider.numberOfOrders}</td>

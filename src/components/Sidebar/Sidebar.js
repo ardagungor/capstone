@@ -65,7 +65,7 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink
-                to="/home"
+                to="/order-summary"
                 className={classes.sidebar_li}
                 activeClassName={classes.activeLink}
               >

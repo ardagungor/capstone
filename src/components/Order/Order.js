@@ -15,6 +15,7 @@ const Order = () => {
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [currency, setCurrency] = useState("TL");
+  const [paidAmount, setPaidAmount] = useState(0);
 
   const loadData = () => {
     axios({
@@ -61,14 +62,15 @@ const Order = () => {
                 Authorization: "Bearer " + localStorage.getItem("token"),
               },
               data: {
-                arrivalDate: arrivalDate,
-                orderDate: orderDate,
-                amount: amount,
-                unit: unit,
+                arrivalDate: arrivalDate.toString(),
+                orderDate: orderDate.toString(),
+                amount: amount.toString(),
+                unit: unit.toString(),
                 deliveryLocation: deliveryLocation,
                 state: orderState,
                 providerId: provider.replace(/[^0-9]/g, ""),
-                currency: currency,
+                currency: currency.toString(),
+                paidAmount: paidAmount.toString(),
               },
             })
               .then((res) => {
@@ -133,6 +135,29 @@ const Order = () => {
               placeholder="Enter the unit"
               onChange={(e) => {
                 setUnit(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Paid Amount</Form.Label>
+            <Form.Control
+              type="number"
+              step="any"
+              placeholder="Enter the paid amount"
+              onChange={(e) => {
+                setPaidAmount(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Currency</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter the currency"
+              onChange={(e) => {
+                setCurrency(e.target.value);
               }}
             />
           </Form.Group>

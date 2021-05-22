@@ -6,8 +6,9 @@ import axios from "axios";
 const OrderHistory = () => {
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [providers, setProviders] = useState([]);
 
-  const loadData = () => {
+  const loadOrders = () => {
     axios({
       url: "http://localhost:8080/orders",
       method: "get",
@@ -24,8 +25,26 @@ const OrderHistory = () => {
       });
   };
 
+  const loadProviders = () => {
+    axios({
+      url: "http://localhost:8080/providers/",
+      method: "get",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setProviders(res.data.content);
+        setLoading(true);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
   useEffect(() => {
-    loadData();
+    loadOrders();
+    loadProviders();
   }, []);
 
   return (
@@ -40,7 +59,8 @@ const OrderHistory = () => {
         <thead>
           <tr>
             <td>Order ID</td>
-            <td>Provider (request gelecek)</td>
+            <td>Provider ID</td>
+            <td>Order Date</td>
             <td>Amount Delivered</td>
             <td>Amount Lost</td>
             <td>Paid Amount</td>
@@ -54,9 +74,19 @@ const OrderHistory = () => {
               <tr key={order.orderId}>
                 <td>{order.orderId}</td>
                 <td>{order.providerId}</td>
-                <td>{order.amountDelivered}</td>
-                <td>{order.amountLost}</td>
-                <td>{order.paidAmount}</td>
+                <td>{order.orderDate}</td>
+                <td>
+                  {order.amountDelivered} {order.unit.toLowerCase()}
+                </td>
+                <td>
+                  {order.amountLost} {order.unit.toLowerCase()}
+                </td>
+                <td>
+                  {order.paidAmount}{" "}
+                  {order.currency != null
+                    ? order.currency.toUpperCase()
+                    : order.currency}
+                </td>
                 <td>
                   <div className={classes.state}>{order.state}</div>
                 </td>
