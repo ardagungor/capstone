@@ -4,8 +4,8 @@ import classes from "./Order.module.css";
 import axios from "axios";
 
 const Order = () => {
-  const [arrivalDate, setArrivalDate] = useState(null);
-  const [orderDate, setOrderDate] = useState(null);
+  const [arrivalDate, setArrivalDate] = useState("");
+  const [orderDate, setOrderDate] = useState("");
   const [amount, setAmount] = useState(0);
   const [unit, setUnit] = useState("");
   const [provider, setProvider] = useState(null);
@@ -16,6 +16,9 @@ const Order = () => {
   const [loading, setLoading] = useState(false);
   const [currency, setCurrency] = useState("TL");
   const [paidAmount, setPaidAmount] = useState(0);
+  const [amountDelivered, setAmountDelivered] = useState(0);
+  const [amountCrushed, setAmountCrushed] = useState(0);
+  const [amountSpoiled, setAmountSpoiled] = useState(0);
 
   const loadData = () => {
     axios({
@@ -43,18 +46,7 @@ const Order = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear();
-            if (dd < 10) {
-              dd = "0" + dd;
-            }
-            if (mm < 10) {
-              mm = "0" + mm;
-            }
-            today = yyyy + "-" + mm + "-" + dd;
-            setOrderDate(today);
+
             axios({
               url: "http://localhost:8080/orders/add",
               method: "post",
@@ -62,15 +54,20 @@ const Order = () => {
                 Authorization: "Bearer " + localStorage.getItem("token"),
               },
               data: {
-                arrivalDate: arrivalDate.toString(),
-                orderDate: orderDate,
-                amount: amount.toString(),
+                promisedArrival: arrivalDate.toString(),
+                actualArrival: orderDate.toString(),
+                amountOrdered: amount,
                 unit: unit.toString(),
                 deliveryLocation: deliveryLocation,
                 state: orderState,
-                providerId: provider.replace(/[^0-9]/g, ""),
+                // providerId: provider.replace(/[^0-9]/g, ""),
+                providerId: 11,
                 currency: currency.toString(),
                 paidAmount: paidAmount.toString(),
+                ownerId: localStorage.getItem("id"),
+                amountDelivered: amountDelivered,
+                amountSpoiled: amountSpoiled,
+                amountCrushed: amountCrushed,
               },
             })
               .then((res) => {
@@ -81,33 +78,19 @@ const Order = () => {
               .catch((err) => {
                 console.log(err);
               });
-
-            console.log(
-              arrivalDate,
-              orderDate.toString(),
-              parseFloat(amount),
-              unit,
-              deliveryLocation,
-              provider.replace(/[^0-9]/g, "")
-            );
-            console.log(
-              typeof arrivalDate,
-              typeof orderDate,
-              typeof parseFloat(amount),
-              typeof unit,
-              typeof deliveryLocation,
-              typeof parseInt(provider.charAt(0))
-            );
           }}
         >
           <Form.Group controlId="formBasicUsername">
-            <Form.Label
-              onClick={() => {
-                console.log(providers);
+            <Form.Label>Order Date</Form.Label>
+            <Form.Control
+              type="date"
+              onChange={(e) => {
+                setOrderDate(e.target.value);
               }}
-            >
-              Arrival Date
-            </Form.Label>
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Arrival Date</Form.Label>
             <Form.Control
               type="date"
               onChange={(e) => {
@@ -117,13 +100,49 @@ const Order = () => {
           </Form.Group>
 
           <Form.Group controlId="formBasicUsername">
-            <Form.Label>Amount</Form.Label>
+            <Form.Label>Amount Ordered</Form.Label>
             <Form.Control
               type="number"
               step="any"
-              placeholder="Enter the amount"
+              placeholder="Enter the amount ordered"
               onChange={(e) => {
                 setAmount(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Amount Delivered</Form.Label>
+            <Form.Control
+              type="number"
+              step="any"
+              placeholder="Enter the amount delivered"
+              onChange={(e) => {
+                setAmountDelivered(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Amount Crushed</Form.Label>
+            <Form.Control
+              type="number"
+              step="any"
+              placeholder="Enter the amount crushed"
+              onChange={(e) => {
+                setAmountCrushed(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Amount Spoiled</Form.Label>
+            <Form.Control
+              type="number"
+              step="any"
+              placeholder="Enter the amount spoiled"
+              onChange={(e) => {
+                setAmountSpoiled(e.target.value);
               }}
             />
           </Form.Group>
@@ -172,7 +191,22 @@ const Order = () => {
               }}
             />
           </Form.Group>
-
+          <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label>Select Order Status</Form.Label>
+            <Form.Control
+              as="select"
+              custom
+              onClick={(e) => {
+                setOrderState(e.target.value);
+              }}
+            >
+              <option></option>
+              <option>Fulfilled</option>
+              <option>Placed</option>
+              <option>Accepted</option>
+              <option>Expired</option>
+            </Form.Control>
+          </Form.Group>
           <Form.Group controlId="exampleForm.SelectCustom">
             <Form.Label>Select Provider</Form.Label>
             <Form.Control

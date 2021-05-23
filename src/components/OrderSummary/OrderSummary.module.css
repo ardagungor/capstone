@@ -46,6 +46,13 @@ table tr td {
   background-color: green;
 }
 
+.btnDdelete {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-color: red;
+}
+
 .state {
   background-color: gray;
   border-radius: 10px;

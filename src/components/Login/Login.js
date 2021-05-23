@@ -24,6 +24,7 @@ const Login = () => {
                 if (res.status == "200") {
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("logged", true);
+                  localStorage.setItem("id", res.data.id);
                   setRedirect(true);
                 }
               })

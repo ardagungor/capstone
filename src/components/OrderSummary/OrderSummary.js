@@ -10,7 +10,7 @@ const OrderSummary = () => {
   const [totalPage, setTotalPage] = useState();
   const loadData = () => {
     axios({
-      url: "http://localhost:8080/orders?page=" + page,
+      url: "http://localhost:8080/orders?size=7&page=" + page,
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -60,7 +60,8 @@ const OrderSummary = () => {
             <td>Order Date</td>
             <td>Arrival Date</td>
             <td>Amount Delivered</td>
-            <td>Amount Lost</td>
+            <td>Amount Crushed</td>
+            <td>Amount Spoiled</td>
             <td>Paid Amount</td>
             <td>Status</td>
             <td></td>
@@ -72,13 +73,24 @@ const OrderSummary = () => {
               <tr key={order.orderId}>
                 <td>{order.orderId}</td>
                 <td>{order.providerId}</td>
-                <td>{order.orderDate ? order.orderDate.toString() : "null"}</td>
-                <td>{order.arrivalDate ? order.arrivalDate : "null"}</td>
+                <td>
+                  {order.promisedArrival
+                    ? order.promisedArrival.slice(0, 10)
+                    : "null"}
+                </td>
+                <td>
+                  {order.actualArrival
+                    ? order.actualArrival.slice(0, 10)
+                    : "null"}
+                </td>
                 <td>
                   {order.amountDelivered} {order.unit.toLowerCase()}
                 </td>
                 <td>
-                  {order.amountLost} {order.unit.toLowerCase()}
+                  {order.amountCrushed} {order.unit.toLowerCase()}
+                </td>
+                <td>
+                  {order.amountSpoiled} {order.unit.toLowerCase()}
                 </td>
                 <td>
                   {order.paidAmount}{" "}
@@ -87,11 +99,33 @@ const OrderSummary = () => {
                     : order.currency}
                 </td>
                 <td>
-                  <div className={classes.state}>{order.state}</div>
+                  <div className={classes.state}>
+                    {order.state ? order.state.toUpperCase() : null}
+                  </div>
                 </td>
                 <td>
-                  <button className={classes.btnConfirm}>
-                    Confirm Arrival
+                  <button
+                    className={classes.btnDdelete}
+                    onClick={() => {
+                      axios({
+                        url:
+                          "http://localhost:8080/orders/delete/" +
+                          order.orderId,
+                        method: "delete",
+                        headers: {
+                          Authorization:
+                            "Bearer " + localStorage.getItem("token"),
+                        },
+                      })
+                        .then((res) => {
+                          console.log(res);
+                        })
+                        .catch((err) => {
+                          console.log(err);
+                        });
+                    }}
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>
