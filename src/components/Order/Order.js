@@ -63,7 +63,7 @@ const Order = () => {
               },
               data: {
                 arrivalDate: arrivalDate.toString(),
-                orderDate: orderDate.toString(),
+                orderDate: orderDate,
                 amount: amount.toString(),
                 unit: unit.toString(),
                 deliveryLocation: deliveryLocation,
@@ -82,22 +82,22 @@ const Order = () => {
                 console.log(err);
               });
 
-            // console.log(
-            //   arrivalDate,
-            //   orderDate,
-            //   parseFloat(amount),
-            //   unit,
-            //   deliveryLocation,
-            //   provider.replace(/[^0-9]/g, "")
-            // );
-            // console.log(
-            //   typeof arrivalDate,
-            //   typeof orderDate,
-            //   typeof parseFloat(amount),
-            //   typeof unit,
-            //   typeof deliveryLocation,
-            //   typeof parseInt(provider.charAt(0))
-            // );
+            console.log(
+              arrivalDate,
+              orderDate.toString(),
+              parseFloat(amount),
+              unit,
+              deliveryLocation,
+              provider.replace(/[^0-9]/g, "")
+            );
+            console.log(
+              typeof arrivalDate,
+              typeof orderDate,
+              typeof parseFloat(amount),
+              typeof unit,
+              typeof deliveryLocation,
+              typeof parseInt(provider.charAt(0))
+            );
           }}
         >
           <Form.Group controlId="formBasicUsername">

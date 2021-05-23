@@ -63,7 +63,6 @@ const Dashboard = (props) => {
             <td>Foundation Year</td>
             <td># of Orders</td>
             <td>Operation Area</td>
-            <td>Product Names</td>
             <td>Certifications</td>
           </tr>
         </thead>
@@ -83,7 +82,6 @@ const Dashboard = (props) => {
                 <td>{provider.foundationYear}</td>
                 <td>{provider.numberOfOrders}</td>
                 <td>{provider.operationArea}</td>
-                <td>{provider.products}</td>
                 <td>{provider.certificates}</td>
               </tr>
             ) : (

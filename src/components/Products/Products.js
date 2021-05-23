@@ -26,6 +26,22 @@ const Products = (props) => {
       });
   };
 
+  const deleteProduct = (id) => {
+    axios({
+      url: "http://localhost:8080/products/delete/" + id,
+      method: "delete",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     loadData();
   }, [page]);
@@ -59,6 +75,7 @@ const Products = (props) => {
             <td>Product</td>
             <td>Ideal Temperature</td>
             <td>Ideal Humidity</td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +88,17 @@ const Products = (props) => {
                 </td>
                 <td>
                   {product.idealHumidity} {product.humidityUnit}
+                </td>
+                <td>
+                  <button
+                    key={product.productId}
+                    className={classes.btnDdelete}
+                    onClick={() => {
+                      console.log(product.productId);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ) : (

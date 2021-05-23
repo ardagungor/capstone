@@ -9,10 +9,10 @@ const AddUser = () => {
   const [email, setEmail] = useState(null);
   const [role, setRole] = useState(null);
 
-
   return (
     <div className={classes.container}>
       <div className={classes.form}>
+        <h3>Add User</h3>
         <Form
           onSubmit={(e) => {
             e.preventDefault();

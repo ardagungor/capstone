@@ -32,3 +32,10 @@
 .paginator:hover {
   background-color: gray;
 }
+
+.btnDdelete {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-color: red;
+}
