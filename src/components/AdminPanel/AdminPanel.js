@@ -4,6 +4,7 @@ import AddUser from "./AddUser/AddUser";
 import AddProduct from "./AddProduct/AddProduct";
 import AddVehicle from "./AddVehicle/AddVehicle";
 import AddCertificate from "./AddCertificate/AddCertificate";
+import AddRoute from "./AddRoute/AddRoute";
 
 const AdminPanel = () => {
   return (
@@ -12,6 +13,7 @@ const AdminPanel = () => {
       <AddProduct />
       <AddVehicle />
       <AddCertificate />
+      <AddRoute />
     </div>
   );
 };

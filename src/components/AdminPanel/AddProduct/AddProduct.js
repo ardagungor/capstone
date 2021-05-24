@@ -46,7 +46,7 @@ const AddProduct = () => {
             );
           }}
         >
-          <h3>Add User</h3>
+          <h3>Add Product</h3>
 
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Product</Form.Label>
