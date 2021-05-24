@@ -53,7 +53,7 @@ const Cards = () => {
       <Card number={orders} text="Orders" icon="clipboard" />
       <Card number={spent} text="Spent" icon="money" />
       <Card number={provs} text="Companies" icon="company" />
-      <Card number="751" text="Something" icon="clipboard" />
+      {/* <Card number="751" text="Something" icon="clipboard" /> */}
     </div>
   );
 };

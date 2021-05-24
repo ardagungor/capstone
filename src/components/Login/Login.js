@@ -26,6 +26,15 @@ const Login = () => {
                   localStorage.setItem("logged", true);
                   localStorage.setItem("id", res.data.id);
                   setRedirect(true);
+                  window.location.reload();
+                  console.log(res.data.roles.length);
+                  if (res.data.roles.length === 6) {
+                    localStorage.setItem("role", "admin");
+                  } else if (res.data.roles.length === 4) {
+                    localStorage.setItem("role", "personnel");
+                  } else if (res.data.roles.length === 2) {
+                    localStorage.setItem("role", "user");
+                  }
                 }
               })
               .catch((err) => {
