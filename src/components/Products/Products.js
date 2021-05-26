@@ -32,6 +32,10 @@ const Products = (props) => {
       method: "delete",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept, Z-Key",
       },
     })
       .then((res) => {
@@ -94,7 +98,7 @@ const Products = (props) => {
                     key={product.productId}
                     className={classes.btnDdelete}
                     onClick={() => {
-                      console.log(product.productId);
+                      deleteProduct(product.productId);
                     }}
                   >
                     Delete

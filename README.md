@@ -11,3 +11,7 @@
 - ~~Roller arası görevleri ayarlamak için res.data.roles array'i kontrol edilecek~~
 - ~~Provider firmaya sipariş girme olayı~~
 - ~~Bütün product'ları gösteren sayfa~~
+- Formlar için validation
+- Route eklerken array
+- Herkese kendi order'ı görünecek (order.owner.userId)
+- Ana sayfada üst kısımda kutular herkesin kendi bilgilerine göre olacak

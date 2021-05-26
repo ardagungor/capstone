@@ -104,7 +104,7 @@ const AddRoute = () => {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Add Certificate
+            Add Route
           </Button>
         </Form>
       </div>

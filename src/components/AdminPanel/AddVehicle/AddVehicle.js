@@ -6,7 +6,7 @@ import axios from "axios";
 const AddVehicle = () => {
   const [providerName, setProviderName] = useState("");
   const [providerID, setProviderID] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Green");
   const [model, setModel] = useState("");
   const [capacity, setCapacity] = useState("");
   const [capacityUnit, setCapacityUnit] = useState("m3");
@@ -23,6 +23,9 @@ const AddVehicle = () => {
   const [humidityMonitoringTech, setHumidityMonitoringTech] = useState("");
   const [tempMaintainingTech, setTempMaintainingTech] = useState("");
   const [humidityMaintainingTech, setHumidityMaintainingTech] = useState("");
+  const [fuelType, setFuelType] = useState("Green");
+  const [accidentCount, setAccidentCount] = useState(0);
+
   return (
     <div className={classes.container}>
       <div className={classes.form}>
@@ -39,7 +42,7 @@ const AddVehicle = () => {
               },
               data: {
                 providerName: providerName,
-                providerID: providerID,
+                providerID: parseInt(providerID),
                 vehicleType: type,
                 vehicleModel: model,
                 vehicleCapacity: capacity,
@@ -56,6 +59,8 @@ const AddVehicle = () => {
                 humidityMonitoringTech: humidityMonitoringTech,
                 tempMaintainingTech: tempMaintainingTech,
                 humidityMaintainingTech: humidityMaintainingTech,
+                fuelType: fuelType,
+                accidentCount: parseInt(accidentCount),
               },
             })
               .then((res) => {
@@ -106,6 +111,20 @@ const AddVehicle = () => {
               <option>Non-green</option>
             </Form.Control>
           </Form.Group>
+          <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label>Fuel Type</Form.Label>
+            <Form.Control
+              as="select"
+              custom
+              onClick={(e) => {
+                setFuelType(e.target.value);
+              }}
+            >
+              <option></option>
+              <option>Green</option>
+              <option>Non-green</option>
+            </Form.Control>
+          </Form.Group>
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Vehicle Model</Form.Label>
             <Form.Control
@@ -113,6 +132,16 @@ const AddVehicle = () => {
               placeholder="Enter vehicle model"
               onChange={(e) => {
                 setModel(e.target.value);
+              }}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Accident Count</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Enter accident count"
+              onChange={(e) => {
+                setAccidentCount(e.target.value);
               }}
             />
           </Form.Group>

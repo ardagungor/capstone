@@ -69,69 +69,71 @@ const OrderSummary = () => {
         </thead>
         <tbody>
           {orders.map((order) => {
-            return loading ? (
-              <tr key={order.orderId}>
-                <td>{order.orderId}</td>
-                <td>{order.providerId}</td>
-                <td>
-                  {order.promisedArrival
-                    ? order.promisedArrival.slice(0, 10)
-                    : "null"}
-                </td>
-                <td>
-                  {order.actualArrival
-                    ? order.actualArrival.slice(0, 10)
-                    : "null"}
-                </td>
-                <td>
-                  {order.amountDelivered} {order.unit.toLowerCase()}
-                </td>
-                <td>
-                  {order.amountCrushed} {order.unit.toLowerCase()}
-                </td>
-                <td>
-                  {order.amountSpoiled} {order.unit.toLowerCase()}
-                </td>
-                <td>
-                  {order.paidAmount}{" "}
-                  {order.currency != null
-                    ? order.currency.toUpperCase()
-                    : order.currency}
-                </td>
-                <td>
-                  <div className={classes.state}>
-                    {order.state ? order.state.toUpperCase() : null}
-                  </div>
-                </td>
-                <td>
-                  <button
-                    className={classes.btnDdelete}
-                    onClick={() => {
-                      axios({
-                        url:
-                          "http://localhost:8080/orders/delete/" +
-                          order.orderId,
-                        method: "delete",
-                        headers: {
-                          Authorization:
-                            "Bearer " + localStorage.getItem("token"),
-                        },
-                      })
-                        .then((res) => {
-                          console.log(res);
-                        })
-                        .catch((err) => {
-                          console.log(err);
-                        });
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ) : (
-              "Loading"
-            );
+            if (order.owner.userId == localStorage.getItem("id")) {
+              return loading ? (
+                <tr key={order.orderId}>
+                  <td>{order.orderId}</td>
+                  <td>{order.providerId}</td>
+                  <td>
+                    {order.promisedArrival
+                      ? order.promisedArrival.slice(0, 10)
+                      : "null"}
+                  </td>
+                  <td>
+                    {order.actualArrival
+                      ? order.actualArrival.slice(0, 10)
+                      : "null"}
+                  </td>
+                  <td>
+                    {order.amountDelivered} {order.unit.toLowerCase()}
+                  </td>
+                  <td>
+                    {order.amountCrushed} {order.unit.toLowerCase()}
+                  </td>
+                  <td>
+                    {order.amountSpoiled} {order.unit.toLowerCase()}
+                  </td>
+                  <td>
+                    {order.paidAmount}{" "}
+                    {order.currency != null
+                      ? order.currency.toUpperCase()
+                      : order.currency}
+                  </td>
+                  <td>
+                    <div className={classes.state}>
+                      {order.state ? order.state.toUpperCase() : null}
+                    </div>
+                  </td>
+                  <td>
+                    <button
+                      className={classes.btnDdelete}
+                      onClick={() => {
+                        // axios({
+                        //   url:
+                        //     "http://localhost:8080/orders/delete/" +
+                        //     order.orderId,
+                        //   method: "delete",
+                        //   headers: {
+                        //     Authorization:
+                        //       "Bearer " + localStorage.getItem("token"),
+                        //   },
+                        // })
+                        //   .then((res) => {
+                        //     console.log(res);
+                        //   })
+                        //   .catch((err) => {
+                        //     console.log(err);
+                        //   });
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ) : (
+                "Loading"
+              );
+            }
           })}
         </tbody>
       </table>

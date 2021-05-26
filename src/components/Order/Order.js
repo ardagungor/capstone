@@ -22,7 +22,7 @@ const Order = () => {
 
   const loadData = () => {
     axios({
-      url: "http://localhost:8080/providers",
+      url: "http://localhost:8080/providers?size=500",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),

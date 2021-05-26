@@ -10,7 +10,7 @@ const OrderHistory = () => {
 
   const loadOrders = () => {
     axios({
-      url: "http://localhost:8080/orders",
+      url: "http://localhost:8080/orders?size=7",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -65,40 +65,36 @@ const OrderHistory = () => {
             <td>Amount Lost</td>
             <td>Paid Amount</td>
             <td>Status</td>
-            <td></td>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => {
-            return loading ? (
-              <tr key={order.orderId}>
-                <td>{order.orderId}</td>
-                <td>{order.providerId}</td>
-                <td>{order.orderDate}</td>
-                <td>
-                  {order.amountDelivered} {order.unit.toLowerCase()}
-                </td>
-                <td>
-                  {order.amountLost} {order.unit.toLowerCase()}
-                </td>
-                <td>
-                  {order.paidAmount}{" "}
-                  {order.currency != null
-                    ? order.currency.toUpperCase()
-                    : order.currency}
-                </td>
-                <td>
-                  <div className={classes.state}>{order.state}</div>
-                </td>
-                <td>
-                  <button className={classes.btnConfirm}>
-                    Confirm Arrival
-                  </button>
-                </td>
-              </tr>
-            ) : (
-              "Loading"
-            );
+            if (order.owner.userId == localStorage.getItem("id")) {
+              return loading ? (
+                <tr key={order.orderId}>
+                  <td>{order.orderId}</td>
+                  <td>{order.providerId}</td>
+                  <td>{order.orderDate}</td>
+                  <td>
+                    {order.amountDelivered} {order.unit.toLowerCase()}
+                  </td>
+                  <td>
+                    {order.amountLost} {order.unit.toLowerCase()}
+                  </td>
+                  <td>
+                    {order.paidAmount}{" "}
+                    {order.currency != null
+                      ? order.currency.toUpperCase()
+                      : order.currency}
+                  </td>
+                  <td>
+                    <div className={classes.state}>{order.state}</div>
+                  </td>
+                </tr>
+              ) : (
+                "Loading"
+              );
+            }
           })}
         </tbody>
       </table>
