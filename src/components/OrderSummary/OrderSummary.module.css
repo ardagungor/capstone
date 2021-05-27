@@ -37,6 +37,7 @@ table tbody tr:hover {
 
 table tr td {
   padding: 9px 5px;
+  height: 25px;
 }
 
 .btnConfirm {

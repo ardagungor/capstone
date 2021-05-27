@@ -15,3 +15,4 @@
 - Route eklerken array
 - Herkese kendi order'ı görünecek (order.owner.userId)
 - Ana sayfada üst kısımda kutular herkesin kendi bilgilerine göre olacak
+- Reusability'i artır (bittikten sonra)

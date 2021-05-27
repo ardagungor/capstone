@@ -52,6 +52,7 @@ const AddProduct = () => {
             <Form.Label>Product</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="Enter product name"
               onChange={(e) => {
                 setProductName(e.target.value);
@@ -60,9 +61,10 @@ const AddProduct = () => {
           </Form.Group>
 
           <Form.Group controlId="formBasicUsername">
-            <Form.Label>Ideal Temperature</Form.Label>
+            <Form.Label>Ideal Temperature (°C)</Form.Label>
             <Form.Control
               type="number"
+              required
               step="any"
               placeholder="Enter ideal temperature"
               onChange={(e) => {
@@ -87,10 +89,11 @@ const AddProduct = () => {
           </Form.Group> */}
 
           <Form.Group controlId="formBasicUsername">
-            <Form.Label>Ideal Humidity %</Form.Label>
+            <Form.Label>Ideal Humidity (%)</Form.Label>
             <Form.Control
               type="number"
               step="any"
+              required
               placeholder="Enter ideal humidity percentage"
               onChange={(e) => {
                 setHumidity(e.target.value);

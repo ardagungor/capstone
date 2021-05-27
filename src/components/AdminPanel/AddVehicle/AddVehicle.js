@@ -81,6 +81,7 @@ const AddVehicle = () => {
             <Form.Label>Provider Name</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="Enter provider name"
               onChange={(e) => {
                 setProviderName(e.target.value);
@@ -91,6 +92,7 @@ const AddVehicle = () => {
             <Form.Label>Provider ID</Form.Label>
             <Form.Control
               type="long"
+              required
               placeholder="Enter provider ID"
               onChange={(e) => {
                 setProviderID(e.target.value);
@@ -101,6 +103,7 @@ const AddVehicle = () => {
             <Form.Label>Vehicle Type</Form.Label>
             <Form.Control
               as="select"
+              required
               custom
               onClick={(e) => {
                 setType(e.target.value);
@@ -116,6 +119,7 @@ const AddVehicle = () => {
             <Form.Control
               as="select"
               custom
+              required
               onClick={(e) => {
                 setFuelType(e.target.value);
               }}
@@ -129,6 +133,7 @@ const AddVehicle = () => {
             <Form.Label>Vehicle Model</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="Enter vehicle model"
               onChange={(e) => {
                 setModel(e.target.value);
@@ -139,6 +144,7 @@ const AddVehicle = () => {
             <Form.Label>Accident Count</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter accident count"
               onChange={(e) => {
                 setAccidentCount(e.target.value);
@@ -146,9 +152,10 @@ const AddVehicle = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Capacity</Form.Label>
+            <Form.Label>Capacity (m³)</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter vehicle capacity"
               onChange={(e) => {
                 setCapacity(e.target.value);
@@ -156,9 +163,10 @@ const AddVehicle = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Area Coverage</Form.Label>
+            <Form.Label>Area Coverage (km²)</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter area coverage"
               onChange={(e) => {
                 setAreaCoverage(e.target.value);
@@ -166,9 +174,10 @@ const AddVehicle = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Lowest Temperature</Form.Label>
+            <Form.Label>Lowest Temperature (°C)</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter lowest temperature"
               onChange={(e) => {
                 setLowestTemp(e.target.value);
@@ -176,9 +185,10 @@ const AddVehicle = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Highest Temperature</Form.Label>
+            <Form.Label>Highest Temperature (°C)</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter highest temperature"
               onChange={(e) => {
                 setHighestTemp(e.target.value);
@@ -186,9 +196,10 @@ const AddVehicle = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Lowest Humidity</Form.Label>
+            <Form.Label>Lowest Humidity (%)</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter lowest humidity"
               onChange={(e) => {
                 setLowestHumidity(e.target.value);
@@ -196,9 +207,10 @@ const AddVehicle = () => {
             />
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Highest Humidity</Form.Label>
+            <Form.Label>Highest Humidity (%)</Form.Label>
             <Form.Control
               type="number"
+              required
               placeholder="Enter highest humidity"
               onChange={(e) => {
                 setHighestHumidity(e.target.value);
@@ -210,6 +222,7 @@ const AddVehicle = () => {
             <Form.Control
               as="select"
               custom
+              required
               onClick={(e) => {
                 setTemperatureMonitoringTech(e.target.value);
               }}
@@ -225,6 +238,7 @@ const AddVehicle = () => {
             <Form.Control
               as="select"
               custom
+              required
               onClick={(e) => {
                 setHumidityMonitoringTech(e.target.value);
               }}
@@ -239,6 +253,7 @@ const AddVehicle = () => {
             <Form.Label>Temperature Maintaining Tech</Form.Label>
             <Form.Control
               as="select"
+              required
               custom
               onClick={(e) => {
                 setTempMaintainingTech(e.target.value);
@@ -255,6 +270,7 @@ const AddVehicle = () => {
             <Form.Control
               as="select"
               custom
+              required
               onClick={(e) => {
                 setHumidityMaintainingTech(e.target.value);
               }}

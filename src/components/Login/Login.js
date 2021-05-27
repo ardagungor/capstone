@@ -39,7 +39,11 @@ const Login = () => {
               })
               .catch((err) => {
                 console.log(err);
-                alert("Login failed. Please check your username and password");
+                if (username.length > 0 && password.length > 0) {
+                  alert(
+                    "Login failed. Please check your username and password"
+                  );
+                }
               });
           }}
         >
@@ -47,6 +51,7 @@ const Login = () => {
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="Enter username"
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -58,6 +63,7 @@ const Login = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
+              required
               placeholder="Password"
               onChange={(e) => {
                 setPassword(e.target.value);

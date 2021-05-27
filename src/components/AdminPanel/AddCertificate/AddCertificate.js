@@ -13,6 +13,7 @@ const AddCertificate = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
+
             axios({
               url: "http://localhost:8080/certificates/add",
               method: "post",
@@ -33,7 +34,7 @@ const AddCertificate = () => {
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Certificate Name</Form.Label>
             <Form.Control
-              type="text"
+              type="text" required
               placeholder="Enter certificate name"
               onChange={(e) => {
                 setCertName(e.target.value);

@@ -6,11 +6,11 @@ const Topbar = () => {
     <div className={classes.main}>
       <div className={classes.topbar}>
         <div className={classes.toggle}></div>
-        <div className={classes.search}>
+        {/* <div className={classes.search}>
           <label>
             <input type="text" placeholder="Search" />
           </label>
-        </div>
+        </div> */}
         <div className={classes.user}>
           <img
             className={classes.profile_photo}

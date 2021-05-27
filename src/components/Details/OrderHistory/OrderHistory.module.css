@@ -37,6 +37,7 @@ table thead td {
 
 table tr {
   border-bottom: 1px solid gray;
+  height: 75px;
 }
 
 table tbody tr:hover {

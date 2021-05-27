@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { MdBorderColor } from "react-icons/md";
 
 const Sidebar = () => {
-  const [logged, setLogged] = useState(false);
   const [elements, setElements] = useState();
 
   useEffect(() => {

@@ -46,37 +46,51 @@ const Order = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-
-            axios({
-              url: "http://localhost:8080/orders/add",
-              method: "post",
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-              data: {
-                promisedArrival: arrivalDate.toString(),
-                actualArrival: orderDate.toString(),
-                amountOrdered: amount,
-                unit: unit.toString(),
-                deliveryLocation: deliveryLocation,
-                state: orderState,
-                providerId: provider.replace(/[^0-9]/g, ""),
-                currency: currency.toString(),
-                paidAmount: paidAmount.toString(),
-                ownerId: localStorage.getItem("id"),
-                amountDelivered: amountDelivered,
-                amountSpoiled: amountSpoiled,
-                amountCrushed: amountCrushed,
-              },
-            })
-              .then((res) => {
-                if (res.status === 200) {
-                  alert("Order added.");
-                }
+            if (arrivalDate < orderDate) {
+              alert("Please check the order and arrival date.");
+            } else if (
+              unit.toLowerCase() != "kg" &&
+              unit.toLowerCase() != "l"
+            ) {
+              alert("Please check the unit.");
+            } else if (
+              currency.toUpperCase() != "TL" &&
+              currency.toUpperCase() != "EUR" &&
+              currency.toUpperCase() != "USD"
+            ) {
+              alert("Please check the currency.");
+            } else {
+              axios({
+                url: "http://localhost:8080/orders/add",
+                method: "post",
+                headers: {
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                data: {
+                  promisedArrival: arrivalDate.toString(),
+                  actualArrival: orderDate.toString(),
+                  amountOrdered: amount,
+                  unit: unit.toString(),
+                  deliveryLocation: deliveryLocation,
+                  state: orderState,
+                  providerId: provider.replace(/[^0-9]/g, ""),
+                  currency: currency.toString(),
+                  paidAmount: paidAmount.toString(),
+                  ownerId: localStorage.getItem("id"),
+                  amountDelivered: amountDelivered,
+                  amountSpoiled: amountSpoiled,
+                  amountCrushed: amountCrushed,
+                },
               })
-              .catch((err) => {
-                console.log(err);
-              });
+                .then((res) => {
+                  if (res.status === 200) {
+                    alert("Order added.");
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
           }}
         >
           <Form.Group controlId="formBasicUsername">
@@ -150,7 +164,7 @@ const Order = () => {
             <Form.Label>Unit</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter the unit"
+              placeholder="Enter the unit (kg or l)"
               onChange={(e) => {
                 setUnit(e.target.value);
               }}
@@ -173,7 +187,7 @@ const Order = () => {
             <Form.Label>Currency</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter the currency"
+              placeholder="Enter the currency (TL, EUR or USD)"
               onChange={(e) => {
                 setCurrency(e.target.value);
               }}
@@ -215,6 +229,7 @@ const Order = () => {
                 setProvider(e.target.value);
               }}
             >
+              <option></option> 
               {providers.map((provider) => {
                 return loading ? (
                   <option>

@@ -66,6 +66,7 @@ const AddRoute = () => {
             <Form.Label>Select Vehicle</Form.Label>
             <Form.Control
               as="select"
+              required
               custom
               onClick={(e) => {
                 setVehicle(e.target.value);
@@ -73,7 +74,7 @@ const AddRoute = () => {
             >
               {vehicles.map((vehicle) => {
                 return loading ? (
-                  <option>
+                  <option key={vehicle.vehicleId}>
                     {vehicle.vehicleId} - {vehicle.vehicleType} -{" "}
                     {vehicle.vehicleModel}
                   </option>
@@ -87,6 +88,7 @@ const AddRoute = () => {
             <Form.Label>From</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="From (e.g. Beşiktaş, İstanbul, Samsun)"
               onChange={(e) => {
                 setFrom(e.target.value);
@@ -97,6 +99,7 @@ const AddRoute = () => {
             <Form.Label>To</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="To (e.g. Çankaya, Ankara, Antalya)"
               onChange={(e) => {
                 setTo(e.target.value);

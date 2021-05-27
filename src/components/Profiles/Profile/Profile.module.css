@@ -1,8 +1,15 @@
+.main {
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
 .profile {
   text-align: center;
   justify-content: center;
   margin: auto;
-  width: 50%;
+  width: 45%;
   height: 800px;
   padding-top: 50px;
   border: 1px solid #000;

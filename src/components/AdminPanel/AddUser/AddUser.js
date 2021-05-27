@@ -16,31 +16,36 @@ const AddUser = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            axios
-              .post("http://localhost:8080/auth/signup", {
-                username: username,
-                password: password,
-                email: email,
-                role: role.toLowerCase(),
-              })
-              .then((res) => {
-                if (res.status == "200") {
-                  console.log(res);
-                  alert("User " + username + " is created.");
-                }
-              })
-              .catch((err) => {
-                console.log(err);
-                alert(
-                  "User creation failed. Please check the username and password"
-                );
-              });
+            if (password.length < 6) {
+              alert("Password cannot be shorter than 6 characters.");
+            } else {
+              axios
+                .post("http://localhost:8080/auth/signup", {
+                  username: username,
+                  password: password,
+                  email: email,
+                  role: role.toLowerCase(),
+                })
+                .then((res) => {
+                  if (res.status == "200") {
+                    console.log(res);
+                    alert("User " + username + " is created.");
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  alert(
+                    "User creation failed. Please check the username and password"
+                  );
+                });
+            }
           }}
         >
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
+              required
               placeholder="Enter username"
               onChange={(e) => {
                 setUsername(e.target.value);
@@ -52,6 +57,7 @@ const AddUser = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
+              required
               placeholder="Password"
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -63,6 +69,7 @@ const AddUser = () => {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
+              required
               placeholder="Email"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -75,6 +82,7 @@ const AddUser = () => {
             <Form.Control
               as="select"
               custom
+              required
               onClick={(e) => {
                 setRole(e.target.value);
               }}

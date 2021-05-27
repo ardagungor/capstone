@@ -88,7 +88,9 @@ const OrderHistory = () => {
                       : order.currency}
                   </td>
                   <td>
-                    <div className={classes.state}>{order.state}</div>
+                    <div className={classes.state}>
+                      {order.state.toUpperCase()}
+                    </div>
                   </td>
                 </tr>
               ) : (
