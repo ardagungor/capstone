@@ -27,7 +27,6 @@ const Login = () => {
                   localStorage.setItem("id", res.data.id);
                   setRedirect(true);
                   window.location.reload();
-                  console.log(res.data.roles.length);
                   if (res.data.roles.length === 6) {
                     localStorage.setItem("role", "admin");
                   } else if (res.data.roles.length === 4) {

@@ -8,6 +8,22 @@ const OrderSummary = () => {
   const [orders, setOrders] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState();
+
+  const deleteData = (id) => {
+    axios({
+      url: "http://localhost:8080/orders/delete/" + id,
+      method: "delete",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const loadData = () => {
     axios({
       url: "http://localhost:8080/orders?size=10&page=" + page,
@@ -107,24 +123,7 @@ const OrderSummary = () => {
                   <td>
                     <button
                       className={classes.btnDdelete}
-                      onClick={() => {
-                        axios({
-                          url:
-                            "http://localhost:8080/orders/delete/" +
-                            order.orderId,
-                          method: "delete",
-                          headers: {
-                            Authorization:
-                              "Bearer " + localStorage.getItem("token"),
-                          },
-                        })
-                          .then((res) => {
-                            console.log(res);
-                          })
-                          .catch((err) => {
-                            console.log(err);
-                          });
-                      }}
+                      onClick={() => deleteData(order.orderId)}
                     >
                       Delete
                     </button>

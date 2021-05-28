@@ -87,6 +87,7 @@ const AddUser = () => {
                 setRole(e.target.value);
               }}
             >
+              <option></option>
               <option>Admin</option>
               <option>Personnel</option>
               <option>User</option>

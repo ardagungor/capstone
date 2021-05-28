@@ -1,5 +1,4 @@
 import classes from "./Result.module.css";
-import Button from "../../Reusable/Button/Button";
 import React from "react";
 
 const CompanyInfo = (props) => {
@@ -11,7 +10,6 @@ const CompanyInfo = (props) => {
             className={classes.img}
             src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg" alt="logo"
           />
-          <Button text="Select" />
         </div>
         <div className={classes.info}>
           <div className={classes.upper}>

@@ -9,14 +9,11 @@ import Profiles from "./components/Profiles/Profiles";
 import Dashboard from "./components/Dashboard/Dashboard";
 import OrderSummary from "./components/OrderSummary/OrderSummary";
 import Products from "./components/Products/Products";
-import AdminPanel from "./components/AdminPanel/AdminPanel"
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 import PrivateRoute from "./PrivateRoute";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
-  let decisionFunction = () => {
-    return localStorage.getItem("logged");
-  };
   return (
     <BrowserRouter>
       <div className="App">
@@ -52,9 +49,7 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
-        {/* <Switch>
-          <Route exact path="/dashboard" component={Dashboard} />
-        </Switch> */}
+
         <Switch>
           <PrivateRoute exact path="/order-summary" component={OrderSummary} />
         </Switch>

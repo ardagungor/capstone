@@ -34,7 +34,7 @@ const Results = () => {
   return (
     <div className={classes.container}>
       <div className={classes.header}>
-        <h2>Dashboard</h2>
+        <h2>Results</h2>
         <div className={classes.pages}>
           <GrFormPrevious
             onClick={() => {
@@ -57,12 +57,14 @@ const Results = () => {
       </div>
       {providers.map((provider) => {
         return loading ? (
-          <Result companyName={provider.providerName} match={`Green percentage: ${provider.greenPercentage}`}/>
+          <Result
+            companyName={provider.providerName}
+            match={`Green percentage: ${provider.greenPercentage}`}
+          />
         ) : (
           "Loading"
         );
       })}
-      
     </div>
   );
 };
