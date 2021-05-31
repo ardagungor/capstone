@@ -9,7 +9,8 @@ const AddRoute = () => {
   const [vehicle, setVehicle] = useState();
   const [from, setFrom] = useState();
   const [to, setTo] = useState();
-  const [destinations, setDestinations] = useState(["Beşiktaş", "Ortaköy"]);
+  const [destinations, setDestinations] = useState("");
+  const [arr, setArr] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -50,7 +51,7 @@ const AddRoute = () => {
                 vehicleId: vehicle.replace(/[^0-9]/g, ""),
                 from: from,
                 to: to,
-                destinations: destinations,
+                destinations: arr,
               },
             })
               .then((res) => {
@@ -60,6 +61,14 @@ const AddRoute = () => {
                 console.log(err);
                 alert(err);
               });
+            // console.log(from, to, destinations, vehicle, arr);
+            // console.log(
+            //   typeof from,
+            //   typeof to,
+            //   typeof destinations,
+            //   typeof vehicle,
+            //   typeof arr
+            // );
           }}
         >
           <Form.Group controlId="exampleForm.SelectCustom">
@@ -72,6 +81,8 @@ const AddRoute = () => {
                 setVehicle(e.target.value);
               }}
             >
+              {" "}
+              <option></option>
               {vehicles.map((vehicle) => {
                 return loading ? (
                   <option key={vehicle.vehicleId}>
@@ -103,6 +114,19 @@ const AddRoute = () => {
               placeholder="To (e.g. Çankaya, Ankara, Antalya)"
               onChange={(e) => {
                 setTo(e.target.value);
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Destinations (seperate with a comma)</Form.Label>
+            <Form.Control
+              type="text"
+              required
+              placeholder="To (Sarıyer, Ortaköy, Beşiktaş, Taksim)"
+              onChange={(e) => {
+                setDestinations(e.target.value);
+                setArr(destinations.split(" ,"));
               }}
             />
           </Form.Group>

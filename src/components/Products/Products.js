@@ -10,7 +10,7 @@ const Products = (props) => {
   const [totalPage, setTotalPage] = useState();
   const loadData = () => {
     axios({
-      url: "http://localhost:8080/products?page=" + page,
+      url: "http://localhost:8080/products?size=7&page=" + page,
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),

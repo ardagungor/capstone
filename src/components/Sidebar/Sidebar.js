@@ -20,7 +20,7 @@ const Sidebar = () => {
                 <span className={classes.icon}></span>
                 <span className={classes.title}>Capstone 1220</span>
               </NavLink>
-            </li>
+            </li>{" "}
             {localStorage.getItem("id") ? (
               <li>
                 <NavLink
@@ -35,8 +35,22 @@ const Sidebar = () => {
                 </NavLink>
               </li>
             ) : null}
+            {localStorage.getItem("role") == "personnel" ? (
+              <li>
+                <NavLink
+                  to="/admin-panel"
+                  className={classes.sidebar_li}
+                  activeClassName={classes.activeLink}
+                >
+                  <span className={classes.icon}>
+                    <MdBorderColor />
+                  </span>
+                  <span className={classes.title}>Admin Panel</span>
+                </NavLink>
+              </li>
+            ) : null}
             {localStorage.getItem("id") &
-            (localStorage.getItem("role") === "admin") ? (
+            (localStorage.getItem("role") == "admin") ? (
               <li>
                 <NavLink
                   to="/admin-panel"
@@ -107,7 +121,6 @@ const Sidebar = () => {
                 </NavLink>
               </li>
             ) : null}
-
             {localStorage.getItem("id") ? (
               <li>
                 <NavLink

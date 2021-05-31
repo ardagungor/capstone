@@ -6,16 +6,22 @@ import AddVehicle from "./AddVehicle/AddVehicle";
 import AddCertificate from "./AddCertificate/AddCertificate";
 import AddRoute from "./AddRoute/AddRoute";
 import AddProvider from "./AddProvider/AddProvider";
+import AddProductToProvider from "./AddProductToProvider/AddProductToProvider";
+import AddCertToProvider from "./AddCertToProvider/AddCertToProvider";
 
 const AdminPanel = () => {
-  return (
+  return localStorage.getItem("role") === "user" ? (
+    <h1>You are not authorized to view this page.</h1>
+  ) : (
     <div className={classes.adminPanel}>
-      <AddUser />
+      {localStorage.getItem("role") === "admin" ? <AddUser /> : null}
       <AddProvider />
       <AddProduct />
       <AddVehicle />
       <AddCertificate />
       <AddRoute />
+      <AddProductToProvider />
+      <AddCertToProvider />
     </div>
   );
 };
