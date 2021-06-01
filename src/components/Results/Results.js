@@ -56,34 +56,15 @@ const Results = () => {
       });
   };
 
-  // const filterByArea = () => {
-  //   axios({
-  //     url: "http://localhost:8080/mcdm/filter/",
-  //     method: "post",
-  //     headers: {
-  //       Authorization: "Bearer " + localStorage.getItem("token"),
-  //     },
-  //     data: {
-  //       operationArea: area,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       setProviders(res.data.content);
-  //       setLoading(true);
-  //       setTotalPage(res.data.totalPages);
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data);
-  //     });
-  // };
-
   const filterByArea = () => {
     axios({
-      url: "http://localhost:8080/providers/filter?operationArea=" + area,
-      method: "get",
+      url: "http://localhost:8080/mcdm/filter/",
+      method: "post",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        operationArea: area,
       },
     })
       .then((res) => {
@@ -96,6 +77,25 @@ const Results = () => {
         console.log(err.response.data);
       });
   };
+
+  // const filterByArea = () => {
+  //   axios({
+  //     url: "http://localhost:8080/providers/filter?operationArea=" + area,
+  //     method: "get",
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   })
+  //     .then((res) => {
+  //       setProviders(res.data.content);
+  //       setLoading(true);
+  //       setTotalPage(res.data.totalPages);
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response.data);
+  //     });
+  // };
   const filterByGreen = () => {
     axios({
       url: "http://localhost:8080/mcdm/filter/",
@@ -250,6 +250,9 @@ const Results = () => {
           <Result
             companyName={provider.providerName}
             match={`Green percentage: ${provider.greenPercentage}`}
+            crit1={provider.totalVehicleCount}
+            crit2={provider.products.length}
+            crit3={provider.orders.length}
           />
         ) : (
           "Loading"

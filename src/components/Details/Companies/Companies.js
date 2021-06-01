@@ -9,7 +9,7 @@ const Companies = (props) => {
 
   const loadData = () => {
     axios({
-      url: "http://localhost:8080/providers?size=50",
+      url: "http://localhost:8080/providers?size=5",
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -20,7 +20,7 @@ const Companies = (props) => {
         setLoading(true);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 

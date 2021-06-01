@@ -8,7 +8,8 @@ const CompanyInfo = (props) => {
         <div className={classes.logo}>
           <img
             className={classes.img}
-            src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg" alt="logo"
+            src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg"
+            alt="logo"
           />
         </div>
         <div className={classes.info}>
@@ -17,9 +18,9 @@ const CompanyInfo = (props) => {
             <div className={classes.match}>{props.match}%</div>
           </div>
           <div className={classes.lower}>
-            <div className={classes.criteria}>Crit 1 - {props.crit1}/10</div>
-            <div className={classes.criteria}>Crit 2 - {props.crit2}/10</div>
-            <div className={classes.criteria}>Crit 3 - {props.crit3}/10</div>
+            <div className={classes.criteria}>Vehicle count: {props.crit1}</div>
+            <div className={classes.criteria}>Product count: {props.crit2}</div>
+            <div className={classes.criteria}>Order Count: {props.crit3}</div>
           </div>
         </div>
       </div>

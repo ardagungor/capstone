@@ -31,10 +31,12 @@ const Order = () => {
       .then((res) => {
         setProviders(res.data.content);
         setLoading(true);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
       });
+    console.log(providers);
   };
   useEffect(() => {
     loadData();
@@ -229,7 +231,7 @@ const Order = () => {
                 setProvider(e.target.value);
               }}
             >
-              <option></option> 
+              <option></option>
               {providers.map((provider) => {
                 return loading ? (
                   <option>
