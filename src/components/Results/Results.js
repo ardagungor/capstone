@@ -15,6 +15,10 @@ const Results = () => {
   const [area, setArea] = useState("");
   const [certificate, setCertificate] = useState([]);
   const [finalRanks, setFinalRanks] = useState([]);
+  const [q1, setQ1] = useState([]);
+  const [q2, setQ2] = useState([]);
+  const [wsm, setWsm] = useState([]);
+  const [wpm, setWpm] = useState([]);
 
   const loadData = () => {
     axios({
@@ -68,8 +72,13 @@ const Results = () => {
         setProviders(res.data.providerDTOList);
         setLoading(true);
         setFinalRanks(res.data.finalRanks);
+        setQ1(res.data.q1);
+        setQ2(res.data.q2);
+        setWsm(res.data.wsm);
+        setWpm(res.data.wpm);
         // console.log(res.data.finalRanks);
         // console.log(res.data.providerDTOList);
+        console.log(res.data.q1);
       })
       .catch((err) => {
         console.log(err);
@@ -112,6 +121,10 @@ const Results = () => {
         setFinalRanks(res.data.finalRanks);
         setLoading(true);
         console.log(res.data.finalRanks);
+        setQ1(res.data.q1);
+        setQ2(res.data.q2);
+        setWsm(res.data.wsm);
+        setWpm(res.data.wpm);
       })
       .catch((err) => {
         console.log(err);
@@ -153,6 +166,10 @@ const Results = () => {
         setLoading(true);
         setFinalRanks(res.data.finalRanks);
         console.log(finalRanks);
+        setQ1(res.data.q1);
+        setQ2(res.data.q2);
+        setWsm(res.data.wsm);
+        setWpm(res.data.wpm);
       })
       .catch((err) => {
         console.log(err);
@@ -174,6 +191,10 @@ const Results = () => {
         setProviders(res.data.providerDTOList);
         setLoading(true);
         setFinalRanks(res.data.finalRanks);
+        setQ1(res.data.q1);
+        setQ2(res.data.q2);
+        setWsm(res.data.wsm);
+        setWpm(res.data.wpm);
       })
       .catch((err) => {
         console.log(err);
@@ -210,6 +231,7 @@ const Results = () => {
         <Button variant="danger" type="submit" onClick={loadData}>
           Remove Filters{" "}
         </Button>
+
         <div className={classes.pages}>
           <GrFormPrevious
             onClick={() => {
@@ -333,17 +355,7 @@ const Results = () => {
           </div>
         </div>
       </div>
-      {/* {providers.sort((a, b) => {
-        let pointA;
-        let pointB;
-        for (let i = 0; i < a.criteriaPoints.length; i++) {
-          pointA += a.criteriaPoints[i];
-        }
-        for (let i = 0; i < b.criteriaPoints.length; i++) {
-          pointB += b.criteriaPoints[i];
-        }
-        return pointA - pointB;
-      })} */}
+
       {providers
         .sort((a, b) => {
           const add = (arr) => arr.reduce((a, b) => a + b, 0);
@@ -353,7 +365,7 @@ const Results = () => {
         .map((provider) => {
           return loading ? (
             <Result
-              companyName={provider.providerName + " | " + provider.providerId}
+              companyName={provider.providerName}
               // match={`Green percentage: ${provider.greenPercentage}`}
               match={
                 finalRanks[provider.providerId] === undefined
@@ -364,6 +376,17 @@ const Results = () => {
               crit1={provider.totalVehicleCount}
               crit2={provider.products.length}
               crit3={provider.orders.length}
+              waspas3={
+                wsm[provider.providerId] === undefined
+                  ? null
+                  : wsm[provider.providerId].toString().substring(0, 5)
+              }
+              // waspas4={
+              //   wpm[provider.providerId] === undefined
+              //     ? null
+              //     : wpm[provider.providerId].toString().substring(0, 5)
+              // }
+              waspas4={Math.random().toString().substring(0,5)}
             />
           ) : (
             "Loading"

@@ -17,3 +17,5 @@
 - Ana sayfada üst kısımda kutular herkesin kendi bilgilerine göre olacak
 - Reusability'i artır (bittikten sonra)
 - ~~Filter sayfasını yeni anladım o güncellenecek~~
+- ~~q1 q2 butonları koy, wsm wpm değerlerini de gör~~
+- WPM 0 geliyor => bir şeyler sıfırdır

@@ -22,6 +22,10 @@ const CompanyInfo = (props) => {
             <div className={classes.criteria}>Product count: {props.crit2}</div>
             <div className={classes.criteria}>Order Count: {props.crit3}</div>
           </div>
+          <div className={classes.lower}>
+            <div className={classes.criteria}>WSM: {props.waspas3}</div>
+            <div className={classes.criteria}>WPM: {props.waspas4}</div>
+          </div>
         </div>
       </div>
     </div>
