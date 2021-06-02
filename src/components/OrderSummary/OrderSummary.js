@@ -91,13 +91,13 @@ const OrderSummary = () => {
                   <td>{order.orderId}</td>
                   <td>{order.providerId}</td>
                   <td>
-                    {order.promisedArrival
-                      ? order.promisedArrival.slice(0, 10)
+                    {order.actualArrival
+                      ? order.actualArrival.slice(0, 10)
                       : "null"}
                   </td>
                   <td>
-                    {order.actualArrival
-                      ? order.actualArrival.slice(0, 10)
+                    {order.promisedArrival
+                      ? order.promisedArrival.slice(0, 10)
                       : "null"}
                   </td>
                   <td>

@@ -22,7 +22,7 @@ const Products = (props) => {
         setTotalPage(res.data.totalPages);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 

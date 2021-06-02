@@ -15,7 +15,7 @@ const CompanyInfo = (props) => {
         <div className={classes.info}>
           <div className={classes.upper}>
             <div className={classes.name}>{props.companyName}</div>
-            <div className={classes.match}>{props.match}%</div>
+            <div className={classes.match}>{props.match}</div>
           </div>
           <div className={classes.lower}>
             <div className={classes.criteria}>Vehicle count: {props.crit1}</div>

@@ -14,6 +14,7 @@ const Results = () => {
   const [greenPercentage, setgreenPercentage] = useState(0);
   const [area, setArea] = useState("");
   const [certificate, setCertificate] = useState([]);
+  const [finalRanks, setFinalRanks] = useState([]);
 
   const loadData = () => {
     axios({
@@ -30,7 +31,7 @@ const Results = () => {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 
@@ -46,13 +47,32 @@ const Results = () => {
       },
     })
       .then((res) => {
-        setProviders(res.data.content);
-        setLoading(true);
-        setTotalPage(res.data.totalPages);
-        console.log(res);
+        setTotalPage(1);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
+      });
+  };
+  const mcdmByProduct = () => {
+    axios({
+      url: "http://localhost:8080/mcdm/waspas",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        productName: product,
+      },
+    })
+      .then((res) => {
+        setProviders(res.data.providerDTOList);
+        setLoading(true);
+        setFinalRanks(res.data.finalRanks);
+        // console.log(res.data.finalRanks);
+        // console.log(res.data.providerDTOList);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -68,34 +88,36 @@ const Results = () => {
       },
     })
       .then((res) => {
-        setProviders(res.data.content);
-        setLoading(true);
-        setTotalPage(res.data.totalPages);
+        setTotalPage(1);
         console.log(res);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 
-  // const filterByArea = () => {
-  //   axios({
-  //     url: "http://localhost:8080/providers/filter?operationArea=" + area,
-  //     method: "get",
-  //     headers: {
-  //       Authorization: "Bearer " + localStorage.getItem("token"),
-  //     },
-  //   })
-  //     .then((res) => {
-  //       setProviders(res.data.content);
-  //       setLoading(true);
-  //       setTotalPage(res.data.totalPages);
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data);
-  //     });
-  // };
+  const mcdmByArea = () => {
+    axios({
+      url: "http://localhost:8080/mcdm/waspas/",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        operationArea: area,
+      },
+    })
+      .then((res) => {
+        setProviders(res.data.providerDTOList);
+        setFinalRanks(res.data.finalRanks);
+        setLoading(true);
+        console.log(res.data.finalRanks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const filterByGreen = () => {
     axios({
       url: "http://localhost:8080/mcdm/filter/",
@@ -108,13 +130,53 @@ const Results = () => {
       },
     })
       .then((res) => {
-        setProviders(res.data.content);
-        setLoading(true);
-        setTotalPage(res.data.totalPages);
+        setTotalPage(1);
         console.log(res);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
+      });
+  };
+  const mcdmByGreen = () => {
+    axios({
+      url: "http://localhost:8080/mcdm/waspas/",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        greenPercentage: parseInt(greenPercentage),
+      },
+    })
+      .then((res) => {
+        setProviders(res.data.providerDTOList);
+        setLoading(true);
+        setFinalRanks(res.data.finalRanks);
+        console.log(finalRanks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const mcdmByCert = () => {
+    axios({
+      url: "http://localhost:8080/mcdm/waspas/",
+      method: "post",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      data: {
+        certs: certificate,
+      },
+    })
+      .then((res) => {
+        setProviders(res.data.providerDTOList);
+        setLoading(true);
+        setFinalRanks(res.data.finalRanks);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -130,13 +192,11 @@ const Results = () => {
       },
     })
       .then((res) => {
-        setProviders(res.data.content);
-        setLoading(true);
-        setTotalPage(res.data.totalPages);
-        console.log(res);
+        setTotalPage(1);
+        console.log(res.data);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
   useEffect(() => {
@@ -147,7 +207,7 @@ const Results = () => {
     <div className={classes.container}>
       <div className={classes.header}>
         <h2>Results</h2>
-        <Button variant="primary" type="submit" onClick={loadData}>
+        <Button variant="danger" type="submit" onClick={loadData}>
           Remove Filters{" "}
         </Button>
         <div className={classes.pages}>
@@ -184,7 +244,14 @@ const Results = () => {
           </Form.Group>
           <div className={classes.searchBtn}>
             {" "}
-            <Button variant="primary" type="submit" onClick={filterByProduct}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                filterByProduct();
+                mcdmByProduct();
+              }}
+            >
               Filter
             </Button>
           </div>
@@ -203,7 +270,14 @@ const Results = () => {
           </Form.Group>
           <div className={classes.searchBtn}>
             {" "}
-            <Button variant="primary" type="submit" onClick={filterByGreen}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                filterByGreen();
+                mcdmByGreen();
+              }}
+            >
               Filter
             </Button>
           </div>
@@ -215,13 +289,20 @@ const Results = () => {
               required
               placeholder="Certificate"
               onChange={(e) => {
-                setCertificate(e.target.value);
+                setCertificate([e.target.value]);
               }}
             />
           </Form.Group>
           <div className={classes.searchBtn}>
             {" "}
-            <Button variant="primary" type="submit" onClick={filterByCert}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                filterByCert();
+                mcdmByCert();
+              }}
+            >
               Filter
             </Button>
           </div>
@@ -239,25 +320,55 @@ const Results = () => {
           </Form.Group>
           <div className={classes.searchBtn}>
             {" "}
-            <Button variant="primary" type="submit" onClick={filterByArea}>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                filterByArea();
+                mcdmByArea();
+              }}
+            >
               Filter
             </Button>
           </div>
         </div>
       </div>
-      {providers.map((provider) => {
-        return loading ? (
-          <Result
-            companyName={provider.providerName}
-            match={`Green percentage: ${provider.greenPercentage}`}
-            crit1={provider.totalVehicleCount}
-            crit2={provider.products.length}
-            crit3={provider.orders.length}
-          />
-        ) : (
-          "Loading"
-        );
-      })}
+      {/* {providers.sort((a, b) => {
+        let pointA;
+        let pointB;
+        for (let i = 0; i < a.criteriaPoints.length; i++) {
+          pointA += a.criteriaPoints[i];
+        }
+        for (let i = 0; i < b.criteriaPoints.length; i++) {
+          pointB += b.criteriaPoints[i];
+        }
+        return pointA - pointB;
+      })} */}
+      {providers
+        .sort((a, b) => {
+          const add = (arr) => arr.reduce((a, b) => a + b, 0);
+
+          return add(a.criteriaPoints) < add(b.criteriaPoints);
+        })
+        .map((provider) => {
+          return loading ? (
+            <Result
+              companyName={provider.providerName + " | " + provider.providerId}
+              // match={`Green percentage: ${provider.greenPercentage}`}
+              match={
+                finalRanks[provider.providerId] === undefined
+                  ? null
+                  : finalRanks[provider.providerId].toString().substring(0, 7) +
+                    " points"
+              }
+              crit1={provider.totalVehicleCount}
+              crit2={provider.products.length}
+              crit3={provider.orders.length}
+            />
+          ) : (
+            "Loading"
+          );
+        })}
     </div>
   );
 };

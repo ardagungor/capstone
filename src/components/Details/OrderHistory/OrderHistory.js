@@ -19,9 +19,10 @@ const OrderHistory = () => {
       .then((res) => {
         setOrders(res.data.content);
         setLoading(true);
+        console.log(res.data.content);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 
@@ -38,7 +39,7 @@ const OrderHistory = () => {
         setLoading(true);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
 
@@ -60,7 +61,6 @@ const OrderHistory = () => {
           <tr>
             <td>Order ID</td>
             <td>Provider ID</td>
-            <td>Order Date</td>
             <td>Amount Delivered</td>
             <td>Amount Lost</td>
             <td>Paid Amount</td>
@@ -74,12 +74,12 @@ const OrderHistory = () => {
                 <tr key={order.orderId}>
                   <td>{order.orderId}</td>
                   <td>{order.providerId}</td>
-                  <td>{order.orderDate}</td>
                   <td>
                     {order.amountDelivered} {order.unit.toLowerCase()}
                   </td>
                   <td>
-                    {order.amountLost} {order.unit.toLowerCase()}
+                    {order.amountOrdered - order.amountDelivered}{" "}
+                    {order.unit.toLowerCase()}
                   </td>
                   <td>
                     {order.paidAmount}{" "}

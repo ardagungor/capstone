@@ -31,7 +31,7 @@ const Order = () => {
       .then((res) => {
         setProviders(res.data.content);
         setLoading(true);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

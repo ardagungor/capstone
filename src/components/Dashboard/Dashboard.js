@@ -23,7 +23,7 @@ const Dashboard = (props) => {
         setTotalPage(res.data.totalPages);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   };
   useEffect(() => {
@@ -63,7 +63,6 @@ const Dashboard = (props) => {
             <td>Foundation Year</td>
             <td># of Orders</td>
             <td>Operation Area</td>
-            <td>Certifications</td>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +81,6 @@ const Dashboard = (props) => {
                 <td>{provider.foundationYear}</td>
                 <td>{provider.numberOfOrders}</td>
                 <td>{provider.operationArea}</td>
-                <td>{provider.certificates}</td>
               </tr>
             ) : (
               "Loading"
